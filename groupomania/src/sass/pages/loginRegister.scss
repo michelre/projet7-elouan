@@ -1,0 +1,73 @@
+.login-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 20px;
+  width: 50%;
+  height: 75%;
+  border-radius: 5px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  &__block {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &__content {
+      h2 {
+        color: $color-primary;
+        font-size: 28px;
+        border: 2px solid $color-primary;
+        border-left: none;
+        border-top: none;
+        border-right: none;
+        padding: 20px;
+      }
+      width: 100%;
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &__form {
+        @include formLoginRegister;
+        label {
+          @include labelLoginRegister;
+        }
+        input {
+          @include inputLoginRegister;
+        }
+        button {
+          @include button;
+        }
+      }
+    }
+    &__title {
+      width: 100%;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        object-fit: cover;
+        width: 50%;
+        height: 50%;
+      }
+    }
+  }
+}
+
+.connection-link__Link {
+  text-decoration: none;
+  color: $color-primary;
+  :visited {
+    color: $color-primary;
+  }
+  :hover {
+    color: $color-secondary;
+  }
+}
+

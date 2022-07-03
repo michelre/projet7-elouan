@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route,} from "react-router-dom";
-import App from './pages/index';
-import Survey from './pages/survey';
-import Header from './components/header';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Register from './pages/register';
+import Login from './pages/login';
+import Home from './pages/home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-  <Header />
     <Routes>
-      <Route exact path="/" element={<App />} />
-      <Route path="survey" element={<Survey />} />
+      <Route exact path="/register" element={<Register />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   </BrowserRouter>
 );

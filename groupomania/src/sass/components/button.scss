@@ -1,0 +1,18 @@
+@mixin button {
+  width: 53%;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 5px;
+  color: white;
+  padding: 0 10px;
+  font-size: 24px;
+  font-weight: bold;
+  background: $color-primary;
+  transition: all 0.3s ease-in-out;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+}
