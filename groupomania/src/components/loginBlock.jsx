@@ -1,9 +1,17 @@
 import '../styles/style.css';
 import logo from '../assets/icon-left-font.png';
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-function loginBlock() {
+function LoginBlock() {
+  const navigate = useNavigate();
+
+  const HandleSubmit = event => {
+    event.preventDefault();
+
+    //redirect to /
+    navigate('/home');
+  }
   return (
   <section className='login-register'>
     <div className="login-register__block">
@@ -12,7 +20,7 @@ function loginBlock() {
       </div>
       <div className="login-register__block__content">
         <h2>Se connecter</h2>
-        <form className='login-register__block__content__form'>
+        <form onSubmit={HandleSubmit} className='login-register__block__content__form'>
           <label>E-mail</label>
           <input type="email" name="email" placeholder="E-mail" />
           <p>{/*Error message when email is wrong*/}</p>
@@ -28,4 +36,4 @@ function loginBlock() {
   )
 };
 
-export default loginBlock
+export default LoginBlock

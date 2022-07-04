@@ -28,7 +28,7 @@ function RegisterBlock() {
           <input type="password" name="password" placeholder="Mot de passe" />
           <p>{/*Error message when password is wrong*/}</p>
           <label>Confirmation du mot de passe</label>
-          <input type="password" name="passwordConfirmation" placeholder="Confirmation du mot de passe" />
+          <input type="password" name="passwordConfirmation" placeholder="Confirmation" />
           <p>{/*Error message when password confirmation is wrong*/}</p>
           <button type="submit">S'inscrire</button>
         </form>
