@@ -163,27 +163,34 @@ html, body {
   height: 100%;
 }
 .home-page__scrolling-menu {
+  position: fixed;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 10%;
+  height: 5%;
   top: 0px;
-  color: #FD2D01;
 }
 @media screen and (min-width: 425px) and (max-width: 768px) {
   .home-page__scrolling-menu {
     font-size: 18px;
   }
 }
-.home-page__scrolling-menu ul {
+.home-page__scrolling-menu select {
+  width: 62%;
+  border-style: none;
+  background-color: white;
+  color: #FD2D01;
+  margin: 0;
+  padding: 0;
   list-style-type: none;
   font-size: 28px;
 }
 .home-page__content {
   width: 100%;
-  height: 80%;
+  height: 85%;
 }
 .home-page__menu {
   background-color: white;
@@ -195,8 +202,9 @@ html, body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  bottom: 20px;
+  bottom: 0px;
   margin: 0 6px 6px 6px;
+  position: fixed;
 }
 .home-page__menu__icon {
   width: 33%;
@@ -217,6 +225,41 @@ html, body {
   .home-page__menu__icon__font {
     font-size: 24px;
   }
+}
+
+.home-page__content__post {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  width: 95%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 10px 10px 10px;
+}
+.home-page__content__post__top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90%;
+}
+.home-page__content__post__top__profil-picture {
+  width: 30%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.home-page__content__post__top__profil-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /*# sourceMappingURL=style.css.map */

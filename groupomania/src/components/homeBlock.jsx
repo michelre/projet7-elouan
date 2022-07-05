@@ -9,15 +9,14 @@ import { faHouse, faBell, faGear  } from '@fortawesome/free-solid-svg-icons'
 function Home () {
   return (
     <section className='home-page'>
-      <FontAwesomeIcon icon="fa-solid fa-heart" />
       <div className="home-page__scrolling-menu">
-        <ul>
-          <li>Accueil</li>
-          {/*<li>most liked ?</li>*/}
-        </ul>
+        <select>
+          <option>Dernier post</option>
+          <option>Les plus populaires</option>
+        </select>
       </div>
       <div className="home-page__content">
-        {/*<Post />*/}  
+        <Post />
       </div>
       <div className='home-page__menu'>
         <span className='home-page__menu__icon'><FontAwesomeIcon className='home-page__menu__icon__font' icon={faHouse} /></span>
