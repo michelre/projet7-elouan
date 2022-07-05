@@ -6,17 +6,22 @@ import Post from './post';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faBell, faGear  } from '@fortawesome/free-solid-svg-icons'
 
-function Home () {
+function Home ({posts, sortPosts, sortedType}) {
   return (
     <section className='home-page'>
       <div className="home-page__scrolling-menu">
-        <select>
-          <option>Dernier post</option>
-          <option>Les plus populaires</option>
+        <select value={sortedType} onChange={(e) => sortPosts(e.target.value)}>
+          <option value={'date'}>Dernier post</option>
+          <option value={'popularity'}>Les plus populaires</option>
         </select>
       </div>
       <div className="home-page__content">
-        <Post />
+          {posts.map(p => <Post
+              key={p.id}
+              author={p.author}
+              title={p.title}
+              image={p.image}
+          />)}
       </div>
       <div className='home-page__menu'>
         <span className='home-page__menu__icon'><FontAwesomeIcon className='home-page__menu__icon__font' icon={faHouse} /></span>

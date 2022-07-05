@@ -4,17 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faMessage, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import image from '../assets/icon-left-font.png';
 
-function Post () {
+function Post ({author, title, image}) {
   return (
     <article className='home-page__content__post'>
       <div className='home-page__content__post__top'>
         <div className='home-page__content__post__top__profil-picture'>
           <img src={image} alt=''/>
-          <p>Utilisateur 1</p>
+          <p>{author}</p>
         </div>
         <div className='home-page__content__post__top__content'>
           <div className='home-page__content__post__top__content__text'>
-            <p>pipi popo papa</p>
+            <p>{title}</p>
           </div>
           <div className='home-page__content__post__top__content__img'>
             <img src={image} alt=''/>
