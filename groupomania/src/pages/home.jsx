@@ -1,10 +1,17 @@
 import '../styles/style.css';
 import HomeBlock from '../components/homeBlock';
 import React, { useState } from 'react';
-//import imagetest1 from '../assets/tatouate.jpg';
-//import imagetest2 from '../assets/ponpon.png';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    //redirect to /
+    navigate('/login');
+  }
     const [posts, setPosts] = useState([
         {id: 1, title: 'vneibvpzeiubvezipubvdzepubvpieuzbvedzpbvediuvbe', image:'', author: 'User 1', likes: 10},
         {id: 2, title: 'Test 2', image:'', author: 'User 2', likes: 15},

@@ -6,7 +6,7 @@ import Post from './post';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faBell, faGear  } from '@fortawesome/free-solid-svg-icons'
 
-function Home ({posts, sortPosts, sortedType}) {
+function HomeBlock ({posts, sortPosts, sortedType}) {
   return (
     <section className='home-page'>
       <div className="home-page__scrolling-menu">
@@ -32,4 +32,4 @@ function Home ({posts, sortPosts, sortedType}) {
   )
 };
 
-export default Home;
+export default HomeBlock;

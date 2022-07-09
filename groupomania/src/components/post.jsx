@@ -1,8 +1,10 @@
 import '../styles/style.css';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faMessage, faEllipsis } from '@fortawesome/free-solid-svg-icons'
+import { faMessage } from '@fortawesome/free-regular-svg-icons'
+import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import Image from '../assets/black.jpeg';
+import LikeButton from './like';
 
 function Post ({author, title, image}) {
   return (
@@ -19,12 +21,11 @@ function Post ({author, title, image}) {
             <p>{title}</p>
           </div>
           <div className='home-page__content__post__top__content__img'>
-            <img src={Image} alt=''/>
           </div>
         </div>
       </div>
       <div className='home-page__content__post__bottom'>
-        <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faHeart} /></span>
+        <LikeButton />
         <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
         <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} /></span>
       </div>
