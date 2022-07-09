@@ -2,29 +2,31 @@ import '../styles/style.css';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faMessage, faEllipsis } from '@fortawesome/free-solid-svg-icons'
-import image from '../assets/icon-left-font.png';
+import Image from '../assets/black.jpeg';
 
-function Post () {
+function Post ({author, title, image}) {
   return (
     <article className='home-page__content__post'>
       <div className='home-page__content__post__top'>
-        <div className='home-page__content__post__top__profil-picture'>
-          <img src={image} alt=''/>
-          <p>Utilisateur 1</p>
+        <div className='home-page__content__post__top__profil'>
+          <div className='home-page__content__post__top__profil__picture'>
+            <img src={Image} alt=''/>
+          </div>
+          <p>{author}</p>
         </div>
         <div className='home-page__content__post__top__content'>
           <div className='home-page__content__post__top__content__text'>
-            <p>pipi popo papa</p>
+            <p>{title}</p>
           </div>
           <div className='home-page__content__post__top__content__img'>
-            <img src={image} alt=''/>
+            <img src={Image} alt=''/>
           </div>
         </div>
       </div>
       <div className='home-page__content__post__bottom'>
-        <span className='home-page__content__post__bottom__like'><FontAwesomeIcon icon={faHeart} /></span>
-        <span className='home-page__content__post__bottom__comment'><FontAwesomeIcon icon={faMessage} /></span>
-        <span className='home-page__content__post__bottom__modify'><FontAwesomeIcon icon={faEllipsis} /></span>
+        <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faHeart} /></span>
+        <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
+        <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} /></span>
       </div>
     </article>
   )

@@ -10,8 +10,8 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route exact path="/register" element={<Register />} />
-      <Route path="/" element={<Login />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   </BrowserRouter>
 );
