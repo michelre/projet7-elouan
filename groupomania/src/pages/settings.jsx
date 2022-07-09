@@ -1,4 +1,3 @@
-import '../styles/style.css';
 import React from 'react';
 import SettingsBlock from '../components/settingsBlock';
 

@@ -1,4 +1,3 @@
-import '../styles/style.css';
 import RegisterBlock from '../components/registerBlock';
 import React from 'react';
 import { useNavigate } from 'react-router-dom'

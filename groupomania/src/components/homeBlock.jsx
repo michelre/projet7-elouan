@@ -3,8 +3,7 @@ import '../styles/style.css';
 import React from 'react';
 //import { Link } from 'react-router-dom'
 import Post from './post';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faBell, faGear  } from '@fortawesome/free-solid-svg-icons'
+import Menu from './menu';
 
 function HomeBlock ({posts, sortPosts, sortedType}) {
   return (
@@ -23,11 +22,7 @@ function HomeBlock ({posts, sortPosts, sortedType}) {
               image={p.image}
           />)}
       </div>
-      <div className='home-page__menu'>
-        <span className='home-page__menu__icon'><FontAwesomeIcon className='home-page__menu__icon__font' icon={faHouse} /></span>
-        <span className='home-page__menu__icon'><FontAwesomeIcon className='home-page__menu__icon__font' icon={faBell} /></span>
-        <span className='home-page__menu__icon'><FontAwesomeIcon className='home-page__menu__icon__font' icon={faGear} /></span>
-      </div>
+      <Menu />
     </section>
   )
 };

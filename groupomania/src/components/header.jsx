@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom'
+import '../styles/style.css';
+import React from "react";
 
-function Header() {
+function Header () {
+  const pageName = window.location.pathname === "/" ? "Home" : "Settings";
   return (
-    <nav>
-      <Link to="/">Accueil</Link>
-      <Link to="/survey">Questionnaire</Link>
-    </nav>
+    <div className='header'>
+      <h1>{pageName}</h1>
+    </div>
   )
 }
 
-export default Header
+export default Header;

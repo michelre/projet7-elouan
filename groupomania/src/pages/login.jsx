@@ -1,4 +1,3 @@
-import '../styles/style.css';
 import LoginBlock from '../components/loginBlock';
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
