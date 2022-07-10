@@ -14,15 +14,18 @@ function HomeBlock ({posts, sortPosts, sortedType}) {
           <option value={'popularity'}>Les plus populaires</option>
         </select>
       </div>
-      <div className="home-page__content">
+      <div className='home-page__content-menu'>
+        <div className="home-page__content">
           {posts.map(p => <Post
               key={p.id}
               author={p.author}
               title={p.title}
               image={p.image}
           />)}
+        </div>
+        <Menu />
       </div>
-      <Menu />
+      
     </section>
   )
 };
