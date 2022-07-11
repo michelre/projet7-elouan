@@ -21,11 +21,15 @@
       margin-left: 70px;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 1024px) and (max-width: 1440px) {
       width: 80%;
       align-items: flex-end;
       justify-content: flex-end;
       margin-left: 140px;
+    }
+
+    @media screen and (min-width: 1440px) {
+      margin-top: 20px;
     }
 
     &__element {

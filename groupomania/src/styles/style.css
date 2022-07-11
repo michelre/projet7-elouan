@@ -1,3 +1,54 @@
+.new-post-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  clip-path: circle();
+  background: #FD2D01;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  z-index: 1;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .new-post-button {
+    width: 120px;
+    height: 50px;
+    clip-path: none;
+    border-radius: 40px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .new-post-button {
+    width: 160px;
+    height: 50px;
+    clip-path: none;
+    border-radius: 40px;
+  }
+}
+.new-post-button__mobile {
+  font-size: 30px;
+  color: #FFD7D7;
+}
+@media screen and (min-width: 768px) {
+  .new-post-button__mobile {
+    display: none;
+  }
+}
+.new-post-button__desktop {
+  display: none;
+  font-size: 22px;
+  color: #FFD7D7;
+}
+@media screen and (min-width: 768px) {
+  .new-post-button__desktop {
+    display: flex;
+  }
+}
+
 html, body {
   height: 100vh;
   width: 100vw;
@@ -378,10 +429,6 @@ html, body {
   align-items: center;
   justify-content: center;
 }
-.menu__icon:hover {
-  border-radius: 10px;
-  background-color: #f5f5f5;
-}
 .menu__icon__font {
   font-size: 28px;
   color: #FD2D01;
@@ -446,12 +493,17 @@ html, body {
     margin-left: 70px;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
   .settings-page__list {
     width: 80%;
     align-items: flex-end;
     justify-content: flex-end;
     margin-left: 140px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .settings-page__list {
+    margin-top: 20px;
   }
 }
 .settings-page__list__element {
@@ -498,6 +550,117 @@ html, body {
 }
 .header h1 {
   color: #FD2D01;
+}
+
+.newpost-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.newpost-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.newpost-page__content__form {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.newpost-page__content__form__add-text {
+  border-radius: 10px;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #4E5166;
+  padding: 0 10px;
+  font-size: 16px;
+  color: #FD2D01;
+  margin-bottom: 20px;
+  font-family: "Lato", sans-serif;
+}
+.newpost-page__content__form__add-text:focus {
+  outline: none;
+  border-color: #FD2D01;
+}
+.newpost-page__content__form__add-text:focus::placeholder {
+  color: #FD2D01;
+  vertical-align: text-top;
+}
+.newpost-page__content__form__button {
+  margin-top: 20px;
+  width: 53%;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 5px;
+  color: white;
+  padding: 0 10px;
+  font-size: 24px;
+  font-weight: bold;
+  background: #FD2D01;
+  transition: all 0.3s ease-in-out;
+}
+.newpost-page__content__form__button:focus {
+  outline: none;
+}
+.newpost-page__content__form__button:hover {
+  transform: scale(1.1);
+}
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .newpost-page__content__form__button {
+    width: 74%;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+  .newpost-page__content__form__button {
+    width: 54%;
+    height: 40px;
+    font-size: 22px;
+  }
+}
+.newpost-page__content__form__upload-image {
+  display: none;
+}
+.newpost-page__content__form__upload-image__label {
+  width: 53%;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 5px;
+  color: white;
+  padding: 0 10px;
+  font-size: 24px;
+  font-weight: bold;
+  background: #FD2D01;
+  transition: all 0.3s ease-in-out;
+}
+.newpost-page__content__form__upload-image__label:focus {
+  outline: none;
+}
+.newpost-page__content__form__upload-image__label:hover {
+  transform: scale(1.1);
+}
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .newpost-page__content__form__upload-image__label {
+    width: 74%;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+  .newpost-page__content__form__upload-image__label {
+    width: 54%;
+    height: 40px;
+    font-size: 22px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

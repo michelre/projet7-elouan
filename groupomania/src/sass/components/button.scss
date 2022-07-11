@@ -29,3 +29,50 @@
   }
 
 }
+
+.new-post-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  clip-path: circle();
+  background: $color-primary;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  z-index: 1;
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    width: 120px;
+    height: 50px;
+    clip-path: none;
+    border-radius: 40px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 160px;
+    height: 50px;
+    clip-path: none;
+    border-radius: 40px;
+  }
+
+  &__mobile {
+    font-size: 30px;
+    color: $color-secondary;
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+  &__desktop {
+    display: none;
+    font-size: 22px;
+    color: $color-secondary;
+    @media screen and (min-width: 768px) {
+      display: flex;
+    }
+  }
+}

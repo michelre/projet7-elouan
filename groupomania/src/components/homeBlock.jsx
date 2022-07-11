@@ -1,9 +1,8 @@
 import '../styles/style.css';
-//import logo from '../assets/icon-left-font.png';
 import React from 'react';
-//import { Link } from 'react-router-dom'
 import Post from './post';
 import Menu from './menu';
+import NewPostButton from './newPostButton';
 
 function HomeBlock ({posts, sortPosts, sortedType}) {
   return (
@@ -23,6 +22,7 @@ function HomeBlock ({posts, sortPosts, sortedType}) {
               image={p.image}
           />)}
         </div>
+        <NewPostButton />
         <Menu />
       </div>
       
