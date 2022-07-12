@@ -112,3 +112,49 @@
     }
     }
 }
+
+#post-settings {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.5s linear;
+  &:hover {
+      #post-settings__menu {
+        display: block;
+      }
+    }
+  &__menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    background-color: $color-primary;
+    border-radius: 5px;
+    width: auto;
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      width: 54%;
+      top: 40px;
+    }
+
+    @media screen and (min-width: 1025px) and (max-width: 1440px) {
+      width: 45%;
+      top: 70px;
+    }
+
+    p {
+      padding: 0 6px 0 6px;
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+
+      @media screen and (min-width: 768px) and (max-width: 1024px) {
+        font-size: 20px;
+      }
+
+      @media screen and (min-width: 1025px) and (max-width: 1440px) {
+        font-size: 22px;
+      }
+
+    }
+  }
+}

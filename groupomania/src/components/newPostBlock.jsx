@@ -2,6 +2,8 @@ import '../styles/style.css';
 import React from 'react';
 import Menu from './menu';
 import Header from './header';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImage  } from '@fortawesome/free-solid-svg-icons'
 
 
 function NewPostBlock ({onImageChange, img, deleteImage}) {
@@ -19,7 +21,7 @@ function NewPostBlock ({onImageChange, img, deleteImage}) {
           onChange={onImageChange}
           className='newpost-page__content__form__upload-image'
           ></input>
-          <label for="file-input" className='newpost-page__content__form__upload-image__label'>Ajouter une image</label>
+          <label for="file-input" className='newpost-page__content__form__upload-image__label'><FontAwesomeIcon className='newpost-page__content__form__upload-image__label__icon' icon={faImage} /></label>
           {img && (
             <div className='newpost-page__content__form__image-container'>
               <img className='newpost-page__content__form__upload-image__img' src={img} alt='' />

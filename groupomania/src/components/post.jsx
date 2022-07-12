@@ -27,7 +27,14 @@ function Post ({author, title, image}) {
       <div className='home-page__content__post__bottom'>
         <LikeButton />
         <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
-        <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} /></span>
+        <span id='post-settings' className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} />
+        <div id='post-settings__menu'>
+          <p onClick={() => {
+            window.location.href = '/newpost';
+          }}>Modifier</p>
+          <p>Supprimer</p>
+        </div>
+        </span>
       </div>
     </article>
   )
