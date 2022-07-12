@@ -142,13 +142,13 @@ html, body {
   color: #FD2D01;
 }
 .login-register__block__content__form button {
-  width: 53%;
+  width: 74%;
   height: 40px;
   border: 1px solid;
   border-radius: 5px;
   color: white;
   padding: 0 10px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
   background: #FD2D01;
   transition: all 0.3s ease-in-out;
@@ -159,17 +159,9 @@ html, body {
 .login-register__block__content__form button:hover {
   transform: scale(1.1);
 }
-@media screen and (min-width: 425px) and (max-width: 768px) {
-  .login-register__block__content__form button {
-    width: 74%;
-    height: 40px;
-    font-size: 18px;
-  }
-}
 @media screen and (min-width: 768px) and (max-width: 1440px) {
   .login-register__block__content__form button {
     width: 54%;
-    height: 40px;
     font-size: 22px;
   }
 }
@@ -568,14 +560,14 @@ html, body {
 }
 .newpost-page__content__form {
   height: 100%;
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .newpost-page__content__form__add-text {
-  border-radius: 10px;
+  border-radius: 5px;
   resize: none;
   width: 100%;
   height: 100%;
@@ -583,6 +575,7 @@ html, body {
   padding: 0 10px;
   font-size: 16px;
   color: #FD2D01;
+  padding-top: 6px;
   margin-bottom: 20px;
   font-family: "Lato", sans-serif;
 }
@@ -596,15 +589,17 @@ html, body {
 }
 .newpost-page__content__form__button {
   margin-top: 20px;
-  width: 53%;
-  height: 40px;
-  border: 1px solid;
+  width: 50%;
+  height: 80px;
   border-radius: 5px;
-  color: white;
-  padding: 0 10px;
-  font-size: 24px;
-  font-weight: bold;
   background: #FD2D01;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
   transition: all 0.3s ease-in-out;
 }
 .newpost-page__content__form__button:focus {
@@ -613,17 +608,10 @@ html, body {
 .newpost-page__content__form__button:hover {
   transform: scale(1.1);
 }
-@media screen and (min-width: 425px) and (max-width: 768px) {
-  .newpost-page__content__form__button {
-    width: 74%;
-    height: 40px;
-    font-size: 18px;
-  }
-}
 @media screen and (min-width: 768px) and (max-width: 1440px) {
   .newpost-page__content__form__button {
-    width: 54%;
-    height: 40px;
+    width: 60%;
+    height: 90px;
     font-size: 22px;
   }
 }
@@ -631,13 +619,13 @@ html, body {
   display: none;
 }
 .newpost-page__content__form__upload-image__label {
-  width: 53%;
+  width: 74%;
   height: 40px;
   border: 1px solid;
   border-radius: 5px;
   color: white;
   padding: 0 10px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
   background: #FD2D01;
   transition: all 0.3s ease-in-out;
@@ -648,17 +636,9 @@ html, body {
 .newpost-page__content__form__upload-image__label:hover {
   transform: scale(1.1);
 }
-@media screen and (min-width: 425px) and (max-width: 768px) {
-  .newpost-page__content__form__upload-image__label {
-    width: 74%;
-    height: 40px;
-    font-size: 18px;
-  }
-}
 @media screen and (min-width: 768px) and (max-width: 1440px) {
   .newpost-page__content__form__upload-image__label {
     width: 54%;
-    height: 40px;
     font-size: 22px;
   }
 }

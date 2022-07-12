@@ -4,14 +4,14 @@ import Menu from './menu';
 import Header from './header';
 
 
-function NewPostBlock ({onImageChange, img}) {
+function NewPostBlock ({onImageChange, img, deleteImage}) {
   return (
     <section className='newpost-page'>
       <Header />
       <div className='newpost-page__content'>
         <form className='newpost-page__content__form'>
-          <textarea className='newpost-page__content__form__add-text' type='text' placeholder='Ajouter du texte' />
-          <label></label>
+          <textarea id='add-text' className='newpost-page__content__form__add-text' type='text' placeholder='Ajouter du texte' />
+          <label for='add-text'></label>
           <input
           id='file-input'
           type='file'
@@ -19,8 +19,13 @@ function NewPostBlock ({onImageChange, img}) {
           onChange={onImageChange}
           className='newpost-page__content__form__upload-image'
           ></input>
-          <img src={img} alt="" />
           <label for="file-input" className='newpost-page__content__form__upload-image__label'>Ajouter une image</label>
+          {img && (
+            <div className='newpost-page__content__form__image-container'>
+              <img className='newpost-page__content__form__upload-image__img' src={img} alt='' />
+              <button className='newpost-page__content__form__upload-image__delete' onClick={deleteImage}>Supprimer</button>
+            </div>
+          )}
           <button className='newpost-page__content__form__button' type='submit'>Publier</button>
         </form>
       </div>
