@@ -1,22 +1,22 @@
-const { Sequelize, Datatypes } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
-const bcrypt = require('bcrypt');
-
-const User = sequelize.define('user', {
-    id: {
-      type: Datatypes.STRING,
-      allowNull: false,      
-    },
-    name: {
-      type: Datatypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: Datatypes.STRING,
-      allowNull: true,
-    },
-    password: {
-      type: Datatypes.STRING,
-      allowNull: false,
-    },
-});
+module.exports = (sequelize, DataTypes) => {
+    const User = sequelize.define('user', {
+        id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            primaryKey: true,
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    })
+    return User
+};
