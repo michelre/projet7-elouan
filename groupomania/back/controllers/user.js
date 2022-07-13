@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../models');
-const connection = require('../connection');
 
 const User = require('../models/user');
 
@@ -42,7 +41,7 @@ exports.login = (req, res, next) => {
             userId: user.id,
             token: jwt.sign(
               { userId: user._id },
-              'secret',
+              'RANDOM_TOKEN_SECRET',
               { expiresIn: '24h' }
             )
           });
@@ -51,28 +50,3 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
-
-
-
-
-/* exports.signup = (req, res, next) => {
-  User.findOne ({where: {email: req.body.email}} )
-    .then(user => {
-      if (user) {
-        return res.status(409).json({ error: 'Email already exists' });
-      }
-        bcrypt.hash(req.body.password, 10)
-          .then(hash => {
-            let user = {
-              name : req.body.name,
-              email : req.body.email,
-              password : hash
-            }
-            User.create(user);
-            User.save();
-            res.status(201).json({ message: 'User registered !' });
-          })
-          .catch(error => res.status(500).json({ error }));
-    })
-    .catch(error => res.status(400).json({ error }));
-}; */
