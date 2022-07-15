@@ -18,6 +18,9 @@ module.exports = (req, res, next) => {
     next();
   } else {
     switch (true) {
+      case req.body.password === '':
+        res.status(400).json({ error: 'Veuillez entrez un mot de passe' });
+        break;
       case req.body.password.length < 8:
         res.status(400).json({ error: 'Password must be at least 8 characters long' });
         break;
