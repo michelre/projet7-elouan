@@ -17,6 +17,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      passwordConfirmation: {
+        type: Sequelize.STRING
+      },
       id: {
         type: Sequelize.STRING
       },

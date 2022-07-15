@@ -3,6 +3,7 @@ const app = express();
 const connection = require('./connection');
 
 const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/post');
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); //tous les accèsss depuis n'importe quelle origine
@@ -15,5 +16,6 @@ app.use((req, res, next) => {
 app.use(express.json());  //Express prend toutes les requêtes qui ont comme Content-Type  application/json  et met à disposition leur  body  directement sur l'objet req
 
 app.use('/api/auth', userRoutes);
+app.use('/api/post', postRoutes);
 
 module.exports = app;

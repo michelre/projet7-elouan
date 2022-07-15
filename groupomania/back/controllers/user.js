@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../models');
 require('dotenv').config();
 
-const User = require('../models/user');
+const User = db.user;
 
 exports.signup = (req, res, next) => {
   User.findOne ({where: {email: req.body.email}})
@@ -11,7 +11,14 @@ exports.signup = (req, res, next) => {
       if (user) {
         return res.status(409).json({ error: 'Email already exists' });
       }
-      bcrypt.hash(req.body.password, 10)
+      if (req.body.email === '' || req.body.password === '') {
+        return res.status(400).json({ error: 'Requête invalide !' });
+      } else if (req.body.passwordConfirmation === '') {
+          return res.status(400).json({ error: 'Veuillez confirmer le mot de passe' });
+      } else if (req.body.passwordConfirmation !== req.body.password) {
+          return res.status(400).json({ error: 'Les mots de passe ne correspondent pas !' });
+      } else {
+        bcrypt.hash(req.body.password, 10)
         .then(hash => {
           let user = {
             name : req.body.name,
@@ -24,6 +31,7 @@ exports.signup = (req, res, next) => {
             .catch(error => res.status(400).json({ error}));
         })
         .catch(error => res.status(500).json({ error }));
+      }
     })
 };
 
@@ -51,3 +59,13 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+
+
+/*if (req.body.email === '' || req.body.password === '') {
+    return res.status(400).json({ error: 'Requête invalide !' });
+  } else if (req.body.passwordConfirmation === '') {
+      return res.status(400).json({ error: 'Veuillez confirmer le mot de passe' });
+  } else if (req.body.passwordConfirmation !== req.body.password) {
+      return res.status(400).json({ error: 'Les mots de passe ne correspondent pas !' });
+  } */

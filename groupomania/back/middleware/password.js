@@ -40,7 +40,7 @@ module.exports = (req, res, next) => {
         res.status(400).json({ error: 'Password must not be a default password' });
         break;
       case !validator.isEmail(req.body.password):
-        res.status(400).json({ error: 'Password must be an email' });
+        res.status(400).json({ error: 'Password must not be an email' });
         break;
       default:
         res.status(500).json({ error: 'Password is not valid' });
