@@ -3,6 +3,8 @@ const router = express.Router();
 
 const postCtrl = require('../controllers/post');
 
-router.post ('/create', postCtrl.create);
+const multer = require('../middleware/multer-config');
+
+router.post ('/create', multer, postCtrl.create);
 
 module.exports = router;
