@@ -1,5 +1,5 @@
 const db = require('../models');
-
+const fs = require('fs');
 
 const Post = db.post;
 
@@ -25,5 +25,19 @@ exports.getAll = (req, res, next) => {
 exports.getOne = (req, res, next) => {
   Post.findOne({where:{ id: req.params.id }})
     .then((post) => res.status(200).json(post))
+    .catch(error => res.status(404).json({ error }));
+}
+
+exports.deleteOne = (req, res, next) => {
+  Post.destroy({where:{ id: req.params.id }})
+    .then(Post => {
+      const imageName = Post.image.split('/images/')[1];
+      fs.unlink(`images/${imageName}`, (error) => {
+        if (error) {
+          return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
+        }
+      })
+      res.status(200).json({ message: 'Post supprimé !' });
+    })
     .catch(error => res.status(404).json({ error }));
 }
