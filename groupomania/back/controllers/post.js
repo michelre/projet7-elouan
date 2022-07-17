@@ -47,17 +47,21 @@ exports.deleteOne = (req, res, next) => {
 exports.updateOne = (req, res, next) => {
   Post.findOne({where:{ id: req.params.id }})
     .then(Post => {
-      const temp = JSON.stringify(req.body);
-      const postObject = JSON.parse(temp);
       if (req.file) {
         const imageName = Post.image.split('/images/')[1];
         fs.unlink(`images/${imageName}`, (error) => {
           if (error) {
-            return res.status(500).json({ error: error });
+            return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
           }
-        })
+        })    
       }
-      Post.update(postObject, {where:{ id: req.params.id }})
+      const temp = JSON.stringify(req.body);
+      const postObject = JSON.parse(temp);
+      const post = req.file ? {
+        ...postObject,
+        image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      } : { ...postObject };
+      Post.update(post, {where:{ id: req.params.id }})
         .then(() => res.status(200).json({ message: 'Post modifié !' }))
         .catch(error => res.status(400).json({ error }));
     })
