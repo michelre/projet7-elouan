@@ -67,3 +67,33 @@ exports.updateOne = (req, res, next) => {
     })
     .catch(error => res.status(404).json({ error: 'post non trouvé' }));
 }
+
+exports.likes = (req, res, next) => {
+  Post.findOne({where:{ id: req.params.id }})
+    .then(Post => {
+      switch (req.body.likes) {
+        case 1:
+          if (userslikes.includes(userId)) {
+            res.status(400).json({ error: 'Vous avez déjà liké ce post' });
+          } else {
+            Post.update({ likes: Post.likes + 1 }, {where:{ id: req.params.id }})
+              .then(() => res.status(200).json({ message: 'Post liké !' }))
+              .catch(error => res.status(400).json({ error }));
+          }
+          break;
+        case 0:
+          if (userslikes.includes(userId)) {
+            Post.update({ likes: Post.likes - 1 }, {where:{ id: req.params.id }})
+              .then(() => res.status(200).json({ message: 'Post unliked !' }))
+              .catch(error => res.status(400).json({ error }));
+          } else {
+            res.status(400).json({ error: 'Vous n\'avez pas liké ce post' });
+          }
+          break;
+        default:
+          res.status(400).json({ error: 'Vous n\'avez pas liké ce post' });
+          break;
+      }
+    })
+    .catch(error => res.status(404).json({ error }));
+}
