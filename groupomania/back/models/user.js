@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       UNIQUE: true,
     },
+    profilePicture: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'https://res.cloudinary.com/dzqbzqgjm/image/upload/v1599098981/default-profile-picture_qjqjqj.png',
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -1,6 +1,6 @@
 const db = require('./models')
 
-db.sequelize.sync({force : true}).then((err) => {
+db.sequelize.sync({alter : true}).then((err) => {
   if (err) {
     console.log(err)
   }

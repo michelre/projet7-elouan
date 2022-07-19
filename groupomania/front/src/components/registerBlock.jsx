@@ -3,6 +3,7 @@ import logo from '../assets/icon-left-font.png';
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+
 function RegisterBlock({ handleSubmit }) {
   return (
   <section className='login-register'>
@@ -14,6 +15,8 @@ function RegisterBlock({ handleSubmit }) {
         <h2>S'inscrire</h2>
         <form onSubmit={handleSubmit} className='login-register__block__content__form'>
           <label>E-mail</label>
+          <input type='text' name='username' placeholder='username'/>
+          <p>{/*Error message when username is wrong*/}</p>
           <input type="email" name="email" placeholder="E-mail" />
           <p>{/*Error message when email is wrong*/}</p>
           <label>Mot de passe</label>
