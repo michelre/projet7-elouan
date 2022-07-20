@@ -20,13 +20,12 @@ exports.signup = (req, res, next) => {
       } else {
         bcrypt.hash(req.body.password, 10)
         .then(hash => {
-          let user = {
+          const user = User.build ({
             name : req.body.name,
             email : req.body.email,
             password : hash
-          }
-          User.create(user);
-          User.save()
+          });
+          user.save()
             .then(() => res.status(201).json({message: 'User created'}))
             .catch(error => res.status(400).json({ error}));
         })
@@ -50,7 +49,7 @@ exports.login = (req, res, next) => {
           res.status(200).json({
             userId: user.id,
             token: jwt.sign(
-              { userId: user._id },
+              { userId: user.id },
               process.env.TOKEN,
               { expiresIn: '24h' }
             )

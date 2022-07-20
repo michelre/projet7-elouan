@@ -3,6 +3,7 @@ const fs = require('fs');
 const auth = require('../middleware/auth');
 
 const Post = db.post;
+const User = db.user;
 
 exports.create = (req, res, next) => {
   const postObjectTemp = JSON.stringify(req.body); 
@@ -10,7 +11,7 @@ exports.create = (req, res, next) => {
   delete postObject._id;
   let post = new Post({
     ...postObject,
-    author: req.userId,
+    userId: req.userId,
   });
   if (req.file) {
     post.image = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
@@ -21,7 +22,12 @@ exports.create = (req, res, next) => {
 }
 
 exports.getAll = (req, res, next) => {
-  Post.findAll()
+  Post.findAll({
+    include: [{
+      model: User,
+      attributes: ['name', 'profilePicture'],
+    }],
+  })
     .then((posts) => res.status(200).json(posts))
     .catch(error => res.status(400).json({ error }));
 }
@@ -35,17 +41,21 @@ exports.getOne = (req, res, next) => {
 exports.deleteOne = (req, res, next) => {
   Post.findOne({where:{ id: req.params.id }})
     .then(Post => {
-      if (Post.image !== null) {
-        const imageName = Post.image.split('/images/')[1];
-        fs.unlink(`images/${imageName}`, (error) => {
-          if (error) {
-            return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
-          }
-        })
+      if (req.userId === Post.userId) {
+        if (Post.image !== null) {
+          const imageName = Post.image.split('/images/')[1];
+          fs.unlink(`images/${imageName}`, (error) => {
+            if (error) {
+              return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
+            }
+          })
+        }
+        Post.destroy({where:{ id: req.params.id }})
+          .then(() => res.status(200).json({ message: 'Post supprimé !' }))
+          .catch(error => res.status(400).json({ error }));
+      } else {
+        res.status(400).json({ error: 'Vous n\'avez pas le droit de supprimer ce post' });
       }
-      Post.destroy({where:{ id: req.params.id }})
-        .then(() => res.status(200).json({ message: 'Post supprimé !' }))
-        .catch(error => res.status(400).json({ error }));
     })
     .catch(error => res.status(404).json({ error }));
 }
@@ -53,23 +63,27 @@ exports.deleteOne = (req, res, next) => {
 exports.updateOne = (req, res, next) => {
   Post.findOne({where:{ id: req.params.id }})
     .then(Post => {
-      if (req.file) {
-        const imageName = Post.image.split('/images/')[1];
-        fs.unlink(`images/${imageName}`, (error) => {
-          if (error) {
-            return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
-          }
-        })    
+      if (req.userId === Post.userId) {
+        if (req.file) {
+          const imageName = Post.image.split('/images/')[1];
+          fs.unlink(`images/${imageName}`, (error) => {
+            if (error) {
+              return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
+            }
+          })    
+        }
+        const temp = JSON.stringify(req.body);
+        const postObject = JSON.parse(temp);
+        const post = req.file ? {
+          ...postObject,
+          image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : { ...postObject };
+        Post.update(post, {where:{ id: req.params.id }})
+          .then(() => res.status(200).json({ message: 'Post modifié !' }))
+          .catch(error => res.status(400).json({ error }));
+      } else {
+        res.status(400).json({ error: 'Vous n\'avez pas le droit de modifier ce post' });
       }
-      const temp = JSON.stringify(req.body);
-      const postObject = JSON.parse(temp);
-      const post = req.file ? {
-        ...postObject,
-        image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-      } : { ...postObject };
-      Post.update(post, {where:{ id: req.params.id }})
-        .then(() => res.status(200).json({ message: 'Post modifié !' }))
-        .catch(error => res.status(400).json({ error }));
     })
     .catch(error => res.status(404).json({ error: 'post non trouvé' }));
 }
