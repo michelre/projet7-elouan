@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../models');
+const fs = require('fs');
 require('dotenv').config();
 
 const User = db.user;
@@ -59,3 +60,59 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+exports.logout = (req, res, next) => {
+  User.findOne ({where: {id: req.userId}})
+    .then(user => {
+      console.log(req.session);
+      if (!user) {
+        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+      } else {
+        req.session.destroy();
+        console.log(req.token);
+        res.redirect('/login');
+        res.status(200).json({ message: 'Logout successful' });
+      }
+    })
+    .catch(error => res.status(500).json({ error }));
+};
+
+exports.setProfilePicture = (req, res, next) => {
+  User.findOne ({where: {id: req.userId}})
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+      } else {
+        const User = {
+          ...user,
+          image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        }
+        user.update(User, {where:{ id: req.params.id }})
+        .then(() => res.status(200).json({ message: 'Profile picture updated' }))
+        .catch(error => res.status(500).json({ error }));
+      }
+    })
+};
+
+exports.deleteProfilePicture = (req, res, next) => {
+  User.findOne ({where: {id: req.userId}})
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+      } else {
+        const imageName = user.image.split('/images/')[1];
+          fs.unlink(`images/${imageName}`, (error) => {
+            if (error) {
+              return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
+            }
+          })
+        const User = {
+          ...user,
+          image: null
+        }
+        user.update(User, {where:{ id: req.params.id }})
+          .then(() => res.status(200).json({ message: 'Profile picture deleted' }))
+          .catch(error => res.status(500).json({ error }));
+      }
+    })
+}
