@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const connection = require('./connection');
+const session = require('express-session');
 
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
@@ -12,6 +13,17 @@ app.use((req, res, next) => {
   res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
   next();
 });
+
+app.use (session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  userId: null,
+  cookie: {
+    secure: false,
+    httpOnly: false,
+  }
+}, app));
 
 app.use(express.json());  //Express prend toutes les requêtes qui ont comme Content-Type  application/json  et met à disposition leur  body  directement sur l'objet req
 

@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../models');
 const fs = require('fs');
+const session = require('express-session');
 require('dotenv').config();
 
 const User = db.user;
@@ -47,6 +48,8 @@ exports.login = (req, res, next) => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
+          req.session.userId = user.id;
+          req.session.save(() => {})
           res.status(200).json({
             userId: user.id,
             token: jwt.sign(
@@ -64,12 +67,10 @@ exports.login = (req, res, next) => {
 exports.logout = (req, res, next) => {
   User.findOne ({where: {id: req.userId}})
     .then(user => {
-      console.log(req.session);
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       } else {
         req.session.destroy();
-        console.log(req.token);
         res.redirect('/login');
         res.status(200).json({ message: 'Logout successful' });
       }
@@ -108,7 +109,7 @@ exports.deleteProfilePicture = (req, res, next) => {
           })
         const User = {
           ...user,
-          image: null
+          image: 'https://res.cloudinary.com/dzqbzqgjm/image/upload/v1599098981/default-profile-picture_qjqjqj.png'
         }
         user.update(User, {where:{ id: req.params.id }})
           .then(() => res.status(200).json({ message: 'Profile picture deleted' }))
