@@ -11,7 +11,10 @@ function Home() {
     useEffect (() => {
         getAll()
         .then(response => {
-          setPosts(response.data)
+          setPosts(response.text().then (text => {
+            console.log(text)
+            return JSON.parse(text)
+          }))
         })
     }, )
 
@@ -30,7 +33,7 @@ function Home() {
   return (
     <React.StrictMode>
       <HomeBlock
-          posts={posts}
+          posts={setPosts}
           sortedType={sortedType}
           sortPosts={sortPosts}
       />

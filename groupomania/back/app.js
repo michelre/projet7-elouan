@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const connection = require('./connection');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
@@ -24,6 +25,8 @@ app.use (session({
     httpOnly: false,
   }
 }, app));
+
+app.use (cookieParser());
 
 app.use(express.json());  //Express prend toutes les requêtes qui ont comme Content-Type  application/json  et met à disposition leur  body  directement sur l'objet req
 

@@ -4,16 +4,17 @@ import {login} from '../api';
 
 
 async function loginFetch () {
-  login()
-    .then((response) => {
-      const temp = response.json();
-      console.log(temp)
-      /*const token = response.json().token
-      localStorage.setItem('token', token)*/
+  await login()
+    .then((response) => { 
       if (response.status === 200) {
-        //window.location.href = '/';
+        response.text().then (token => {
+          const Token = (JSON.parse(token));
+          localStorage.setItem('token', Token.token);
+          window.location.href = '/';
+        });
       }
     })
+    .catch((error) => { console.log(error)})
 }
 
 function Login() {

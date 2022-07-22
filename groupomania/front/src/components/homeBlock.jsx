@@ -15,12 +15,12 @@ function HomeBlock ({posts, sortPosts, sortedType}) {
       </div>
       <div className='home-page__content-menu'>
         <div className="home-page__content">
-          {posts.map(p => <Post
+          {/*{posts.map(p => <Post
               key={p.id}
-              author={p.author}
-              title={p.title}
+              author={p.userId}
+              text={p.text}
               image={p.image}
-          />)}
+          />)}*/}
         </div>
         <NewPostButton />
         <Menu />
