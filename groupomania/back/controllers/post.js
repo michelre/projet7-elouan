@@ -57,8 +57,11 @@ exports.deleteOne = (req, res, next) => {
             }
           })
         }
-        Post.destroy({where:{ id: req.params.id }})
-          .then(() => res.status(200).json({ message: 'Post supprimé !' }))
+        Likes.destroy({where:{ postId: req.params.id }})
+          .then(() => Post.destroy({where:{ id: req.params.id }})
+            .then(() => res.status(200).json({ message: 'Post supprimé !' }))
+            .catch(error => res.status(400).json({ error }))
+          )
           .catch(error => res.status(400).json({ error }));
       } else {
         res.status(400).json({ error: 'Vous n\'avez pas le droit de supprimer ce post' });

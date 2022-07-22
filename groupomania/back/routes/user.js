@@ -14,7 +14,7 @@ const connectionLimit = rateLimit({
 const userCtrl = require('../controllers/user');
 
 router.post('/signup', password, userCtrl.signup);
-router.post('/login', connectionLimit, userCtrl.login);
+router.post('/login', /*connectionLimit,*/ userCtrl.login);
 router.post('/logout', auth, userCtrl.logout);
 router.put('/profilePicture', auth, multer, userCtrl.setProfilePicture);
 router.put('/deleteProfilePicture', auth, userCtrl.deleteProfilePicture);
