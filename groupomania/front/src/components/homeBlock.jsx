@@ -1,6 +1,6 @@
 import '../styles/style.css';
 import React from 'react';
-import Post from './post';
+//import Post from './post';
 import Menu from './menu';
 import NewPostButton from './newPostButton';
 

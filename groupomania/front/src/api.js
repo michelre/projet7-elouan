@@ -32,13 +32,14 @@ export const login = () => {
 }
 
 export const getAll = () => {
+  const token = localStorage.getItem('token')
   return fetch (
     'http://localhost:4000/api/post/', {
     method: 'GET',
     headers: {
       "Accept": "application/json",
       "Content-type": "application/json",
-      "Authorization": localStorage.getItem('token'),
+      "Authorization": `Bearer ${token}`,
     },
     
     }

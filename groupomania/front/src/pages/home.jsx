@@ -11,10 +11,10 @@ function Home() {
     useEffect (() => {
         getAll()
         .then(response => {
-          setPosts(response.text().then (text => {
+          /*setPosts(response.text().then (text => {
             console.log(text)
             return JSON.parse(text)
-          }))
+          }))*/
         })
     }, )
 
