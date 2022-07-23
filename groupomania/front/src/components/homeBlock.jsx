@@ -1,11 +1,12 @@
 import '../styles/style.css';
 import React from 'react';
-//import Post from './post';
+import Post from './post';
 import Menu from './menu';
 import NewPostButton from './newPostButton';
 
 function HomeBlock ({posts, sortPosts, sortedType}) {
   return (
+    console.log(posts),
     <section className='home-page'>
       <div className="home-page__scrolling-menu">
         <select value={sortedType} onChange={(e) => sortPosts(e.target.value)}>
@@ -15,12 +16,13 @@ function HomeBlock ({posts, sortPosts, sortedType}) {
       </div>
       <div className='home-page__content-menu'>
         <div className="home-page__content">
-          {/*{posts.map(p => <Post
-              key={p.id}
-              author={p.userId}
-              text={p.text}
-              image={p.image}
-          />)}*/}
+          {posts.map(post => <Post
+              key={post.id}
+              author={post.user.name}
+              authorImage={post.user.image}
+              text={post.text}
+              image={post.image}
+          />)}
         </div>
         <NewPostButton />
         <Menu />

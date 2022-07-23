@@ -4,16 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import LikeButton from './like';
-//import { getAll } from '../api';
 
-function Post ({author, text, image}) {
+function Post ({author, text, image, authorImage}) {
 
   return (
     <article className='home-page__content__post'>
       <div className='home-page__content__post__top'>
         <div className='home-page__content__post__top__profil'>
           <div className='home-page__content__post__top__profil__picture'>
-            <img src={image} alt=''/>
+            <img src={authorImage} alt=''/>
           </div>
           <p>{author}</p>
         </div>
@@ -22,6 +21,7 @@ function Post ({author, text, image}) {
             <p>{text}</p>
           </div>
           <div className='home-page__content__post__top__content__img'>
+            <img src={image} alt=''/>
           </div>
         </div>
       </div>

@@ -28,6 +28,8 @@ app.use (session({
 
 app.use (cookieParser());
 
+app.use('/images' , express.static('images'));
+
 app.use(express.json());  //Express prend toutes les requêtes qui ont comme Content-Type  application/json  et met à disposition leur  body  directement sur l'objet req
 
 app.use('/api/auth', userRoutes);

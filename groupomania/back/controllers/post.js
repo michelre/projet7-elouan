@@ -26,7 +26,7 @@ exports.getAll = (req, res, next) => {
   Post.findAll({
     include: [{
       model: User, as: 'user', attributes: ['name', 'image'],
-    }]
+    }],
   })
     .then((posts) =>  res.status(200).json(posts))
     .catch(error => res.status(400).json({ error }));

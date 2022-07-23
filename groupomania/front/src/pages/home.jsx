@@ -11,10 +11,9 @@ function Home() {
     useEffect (() => {
         getAll()
         .then(response => {
-          setPosts(response.json().then (data => {
-            console.log(data)
-            return data
-          }))
+          response.json().then (data => {
+            setPosts(data);
+          });
         })
     }, [])
 

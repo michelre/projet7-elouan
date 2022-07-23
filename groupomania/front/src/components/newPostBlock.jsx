@@ -6,15 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage  } from '@fortawesome/free-solid-svg-icons'
 
 
-function NewPostBlock ({onImageChange, img, deleteImage}) {
+function NewPostBlock ({onImageChange, img, deleteImage, HandleSubmit}) {  
   return (
     <section className='newpost-page'>
       <Header />
       <div className='newpost-page__content'>
-        <form className='newpost-page__content__form'>
-          <textarea id='add-text' className='newpost-page__content__form__add-text' type='text' placeholder='Ajouter du texte' />
+        <form onSubmit={HandleSubmit} className='newpost-page__content__form'>
+          <textarea name='text' id='add-text' className='newpost-page__content__form__add-text' type='text' placeholder='Ajouter du texte' />
           <label for='add-text'></label>
           <input
+          name='image'
           id='file-input'
           type='file'
           multiple={false}
@@ -28,7 +29,7 @@ function NewPostBlock ({onImageChange, img, deleteImage}) {
               <button className='newpost-page__content__form__upload-image__delete' onClick={deleteImage}>Supprimer</button>
             </div>
           )}
-          <button className='newpost-page__content__form__button' type='submit'>Publier</button>
+          <button  className='newpost-page__content__form__button' type='submit'>Publier</button>
         </form>
       </div>
       <Menu />

@@ -41,7 +41,24 @@ export const getAll = () => {
       "Content-type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    
+    }
+  )
+}
+
+export const create = () => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    'http://localhost:4000/api/post/', {
+    method: 'POST',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      text: document.querySelector('textarea[name="text"]').value,
+      image: document.querySelector('input[name="image"]').files[0].name,
+    })
     }
   )
 }
