@@ -7,9 +7,9 @@ async function loginFetch () {
   await login()
     .then((response) => { 
       if (response.status === 200) {
-        response.text().then (token => {
-          const Token = (JSON.parse(token));
-          localStorage.setItem('token', Token.token);
+        response.json().then (token => {
+          const Token = (token.token);
+          localStorage.setItem('token', Token);
           window.location.href = '/';
         });
       }
