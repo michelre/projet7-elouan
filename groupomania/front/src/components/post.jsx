@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import LikeButton from './like';
+import { deletePost } from '../api';
 
-function Post ({author, text, image, authorImage, modify, id}) {
-
+function Post ({author, authorId, text, image, authorImage, modify, id}) {
   return (
-    <article className='home-page__content__post'>
+    <article className='home-page__content__post' >
         <div className='home-page__content__post__top'>
           <div className='home-page__content__post__top__profil'>
             <div className='home-page__content__post__top__profil__picture'>
@@ -26,13 +26,16 @@ function Post ({author, text, image, authorImage, modify, id}) {
           </div>
         </div>
         <div className='home-page__content__post__bottom'>
-          <LikeButton />
+          <LikeButton 
+          id={id}
+          authorId={authorId}
+          />
           <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
           <span id='post-settings' className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} />
-          <div id='post-settings__menu'>
+          <div id='post-settings__menu' data-set={authorId}>
             <p onClick={() => modify(id)}>Modifier</p>
-            <p>Supprimer</p>
-          </div>
+            <p onClick={() => deletePost(id)}>Supprimer</p>
+          </div>  
           </span>
         </div>
     </article>

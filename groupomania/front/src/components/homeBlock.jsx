@@ -17,6 +17,7 @@ function HomeBlock ({posts, sortPosts, sortedType, modify}) {
         <div className="home-page__content">
           {posts.map(post => <Post
               id={post.id}
+              authorId={post.userId}
               author={post.user.name}
               authorImage={post.user.image}
               text={post.text}

@@ -94,3 +94,31 @@ export const modifyPost = (id) => {
         }
     )
 }
+
+export const deletePost = (id) => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    `http://localhost:4000/api/post/${id}`, {
+    method: 'DELETE',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    }
+  )
+} 
+
+export const like = (id) => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    `http://localhost:4000/api/post/${id}/like`, {
+    method: 'POST',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    }
+  )
+}

@@ -103,14 +103,14 @@ exports.likes = (req, res, next) => {
     .then(Like => {
       if (Like) {
         Like.destroy({where:{likes: -1, postId: req.params.id, userId: req.userId }})
-          .then(() => res.status(200).json({ message: 'Like supprimé !' }))
+          .then(() => res.status(205).json({ message: 'Like supprimé !' }))
           .catch(error => res.status(400).json({ error }));
       } else {
         Likes.create({
           postId: req.params.id,
           userId: req.userId,
         })
-          .then(() => res.status(200).json({ message: 'Like créé !' }))
+          .then(() => res.status(201).json({ message: 'Like créé !' }))
           .catch(error => res.status(400).json({ error }));
       }
     })

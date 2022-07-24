@@ -18,6 +18,15 @@ function Home() {
         })
     }, [])
 
+    /*posts.forEach(post => {
+      if (+localStorage.getItem('userId') === post.userId && document.getElementById('post-settings')) {
+        console.log(+localStorage.getItem('userId'), post.userId);
+        document.getElementById('post-settings').style.display = 'flex';
+      } else {
+        //document.getElementById('post-settings').style={display: 'none'};
+      }
+    })*/
+
     const modify = (id) => {
       console.log(id);
         window.location.href = `/newpost?id=${id}`;

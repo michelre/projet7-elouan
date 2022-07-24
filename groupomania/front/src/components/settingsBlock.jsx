@@ -3,7 +3,7 @@ import React from 'react';
 import Menu from './menu';
 import Header from './header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightFromBracket, faUserAltSlash } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket, faUserAltSlash,  } from '@fortawesome/free-solid-svg-icons'
 
 function Settings () {
   return (
