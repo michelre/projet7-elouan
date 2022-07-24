@@ -67,6 +67,11 @@ html, body {
   font-family: "Lato", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .login-register {
   display: flex;
   flex-direction: column;
@@ -397,6 +402,20 @@ html, body {
 .home-page__content__post__bottom__icon__font {
   margin: 0 6px 2px 0;
   font-size: 22px;
+}
+.home-page__content__post__bottom__icon span {
+  font-size: 12px;
+  margin-left: 10px;
+}
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .home-page__content__post__bottom__icon span {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1440px) {
+  .home-page__content__post__bottom__icon span {
+    font-size: 26px;
+  }
 }
 
 #post-settings {

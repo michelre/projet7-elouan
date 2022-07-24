@@ -13,9 +13,15 @@ function Home() {
         .then(response => {
           response.json().then (data => {
             setPosts(data);
+            return data;
           });
         })
     }, [])
+
+    const modify = (id) => {
+      console.log(id);
+        window.location.href = `/newpost?id=${id}`;
+    }
 
     const sortPosts = (sortedType) => {
         setSortedType(sortedType)
@@ -32,6 +38,7 @@ function Home() {
   return (
     <React.StrictMode>
       <HomeBlock
+          modify={modify}
           posts={posts}
           sortedType={sortedType}
           sortPosts={sortPosts}
@@ -41,3 +48,15 @@ function Home() {
 }
 
 export default Home
+
+
+
+
+
+/*for (let i = 0; i < data.length; i++) {
+        let temp = +localStorage.getItem('userId');
+        if (data[i].userId === temp) {
+          const setings = document.getElementById('#post-settings__menu');
+          setings.style={display: 'flex'};
+        }
+      } */

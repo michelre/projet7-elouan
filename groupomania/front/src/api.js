@@ -45,6 +45,20 @@ export const getAll = () => {
   )
 }
 
+export const getOne = (id) => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    `http://localhost:4000/api/post/${id}`, {
+    method: 'GET',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    }
+  )
+}
+
 export const create = () => {
   const token = localStorage.getItem('token')
   return fetch (
@@ -61,4 +75,22 @@ export const create = () => {
     })
     }
   )
+}
+
+export const modifyPost = (id) => {
+  const token = localStorage.getItem('token')
+      return fetch (
+        `http://localhost:4000/api/post/${id}`, {
+        method: 'PUT',
+        headers: {
+          "Accept": "application/json",
+          "Content-type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          text: document.querySelector('textarea[name="text"]').value,
+          //image: document.querySelector('input[name="image"]').files[0].name,
+        })
+        }
+    )
 }

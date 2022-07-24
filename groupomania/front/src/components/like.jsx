@@ -14,7 +14,7 @@ function Like () {
         } else {
           setPosts(emptyHeart)
         }
-      }} className='home-page__content__post__bottom__icon'>{posts}</span>
+      }} className='home-page__content__post__bottom__icon'>{posts}<span>4</span></span>
   )
 }
 

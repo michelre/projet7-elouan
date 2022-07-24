@@ -8,7 +8,9 @@ async function loginFetch () {
     .then((response) => { 
       if (response.status === 200) {
         response.json().then (token => {
+          const userId = token.userId;
           const Token = (token.token);
+          localStorage.setItem('userId', userId);
           localStorage.setItem('token', Token);
           window.location.href = '/';
         });
