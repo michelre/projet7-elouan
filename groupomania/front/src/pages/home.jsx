@@ -1,21 +1,21 @@
 import HomeBlock from '../components/homeBlock';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { getAll } from '../api';
+import React, {useState} from 'react';
+import {useEffect} from 'react';
+import {getAll, deletePost} from '../api';
 
 
 function Home() {
     const [posts, setPosts] = useState([]);
     const [sortedType, setSortedType] = useState('date')
 
-    useEffect (() => {
+    useEffect(() => {
         getAll()
-        .then(response => {
-          response.json().then (data => {
-            setPosts(data);
-            return data;
-          });
-        })
+            .then(response => {
+                response.json().then(data => {
+                    setPosts(data);
+                    return data;
+                });
+            })
     }, [])
 
     /*posts.forEach(post => {
@@ -33,32 +33,43 @@ function Home() {
 
     const sortPosts = (sortedType) => {
         setSortedType(sortedType)
-        if(sortedType === 'date'){
+        if (sortedType === 'date') {
             const newPosts = posts.sort((a, b) => a.id - b.id)
             setPosts([].concat(newPosts))
         }
-        if(sortedType === 'popularity'){
+        if (sortedType === 'popularity') {
             const newPosts = posts.sort((a, b) => b.likes - a.likes)
             setPosts([].concat(newPosts))
         }
     }
 
-  return (
-    <React.StrictMode>
-      <HomeBlock
-          modify={modify}
-          posts={posts}
-          sortedType={sortedType}
-          sortPosts={sortPosts}
-      />
-    </React.StrictMode>
-  );
+    const deletePostAction = (id) => {
+        deletePost(id)
+            .then(() => {
+                return getAll()
+            })
+            .then(response => {
+                response.json().then(data => {
+                    setPosts(data);
+                    return data;
+                });
+            })
+    }
+
+    return (
+        <React.StrictMode>
+            <HomeBlock
+                modify={modify}
+                posts={posts}
+                sortedType={sortedType}
+                sortPosts={sortPosts}
+                deletePost={deletePostAction}
+            />
+        </React.StrictMode>
+    );
 }
 
 export default Home
-
-
-
 
 
 /*for (let i = 0; i < data.length; i++) {

@@ -59,20 +59,19 @@ export const getOne = (id) => {
   )
 }
 
-export const create = () => {
+export const create = (post) => {
   const token = localStorage.getItem('token')
+  const formData = new FormData()
+  formData.append('text', post.text)
+  formData.append('image', post.image)
   return fetch (
     'http://localhost:4000/api/post/', {
     method: 'POST',
     headers: {
       "Accept": "application/json",
-      "Content-type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      text: document.querySelector('textarea[name="text"]').value,
-      image: document.querySelector('input[name="image"]').files[0].name,
-    })
+    body: formData
     }
   )
 }
@@ -107,7 +106,7 @@ export const deletePost = (id) => {
     },
     }
   )
-} 
+}
 
 export const like = (id) => {
   const token = localStorage.getItem('token')
