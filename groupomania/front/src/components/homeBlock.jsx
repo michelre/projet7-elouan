@@ -4,7 +4,7 @@ import Post from './post';
 import Menu from './menu';
 import NewPostButton from './newPostButton';
 
-function HomeBlock ({posts, sortPosts, sortedType}) {
+function HomeBlock ({posts, sortPosts, sortedType, modify}) {
   return (
     <section className='home-page'>
       <div className="home-page__scrolling-menu">
@@ -15,11 +15,14 @@ function HomeBlock ({posts, sortPosts, sortedType}) {
       </div>
       <div className='home-page__content-menu'>
         <div className="home-page__content">
-          {posts.map(p => <Post
-              key={p.id}
-              author={p.author}
-              title={p.title}
-              image={p.image}
+          {posts.map(post => <Post
+              id={post.id}
+              authorId={post.userId}
+              author={post.user.name}
+              authorImage={post.user.image}
+              text={post.text}
+              image={post.image}
+              modify={modify}
           />)}
         </div>
         <NewPostButton />

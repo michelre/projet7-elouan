@@ -1,16 +1,35 @@
 import HomeBlock from '../components/homeBlock';
 import React, { useState } from 'react';
-import {getAllPosts} from "../api";
+import { useEffect } from 'react';
+import { getAll } from '../api';
+
 
 function Home() {
-    const [posts, setPosts] = useState();
+    const [posts, setPosts] = useState([]);
     const [sortedType, setSortedType] = useState('date')
 
-    useEffect(() => {
-        getAllPosts().then((response) => {
-            setPosts(response.data)
+    useEffect (() => {
+        getAll()
+        .then(response => {
+          response.json().then (data => {
+            setPosts(data);
+            return data;
+          });
         })
     }, [])
+
+    /*posts.forEach(post => {
+      if (+localStorage.getItem('userId') === post.userId && document.getElementById('post-settings')) {
+        console.log(+localStorage.getItem('userId'), post.userId);
+        document.getElementById('post-settings').style.display = 'flex';
+      } else {
+        //document.getElementById('post-settings').style={display: 'none'};
+      }
+    })*/
+
+    const modify = (id) => {
+        window.location.href = `/newpost?id=${id}`;
+    }
 
     const sortPosts = (sortedType) => {
         setSortedType(sortedType)
@@ -27,6 +46,7 @@ function Home() {
   return (
     <React.StrictMode>
       <HomeBlock
+          modify={modify}
           posts={posts}
           sortedType={sortedType}
           sortPosts={sortPosts}
@@ -36,3 +56,15 @@ function Home() {
 }
 
 export default Home
+
+
+
+
+
+/*for (let i = 0; i < data.length; i++) {
+        let temp = +localStorage.getItem('userId');
+        if (data[i].userId === temp) {
+          const setings = document.getElementById('#post-settings__menu');
+          setings.style={display: 'flex'};
+        }
+      } */

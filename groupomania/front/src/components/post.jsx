@@ -3,39 +3,41 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
-import Image from '../assets/black.jpeg';
 import LikeButton from './like';
+import { deletePost } from '../api';
 
-function Post ({author, title, image}) {
+function Post ({author, authorId, text, image, authorImage, modify, id}) {
   return (
-    <article className='home-page__content__post'>
-      <div className='home-page__content__post__top'>
-        <div className='home-page__content__post__top__profil'>
-          <div className='home-page__content__post__top__profil__picture'>
-            <img src={Image} alt=''/>
+    <article className='home-page__content__post' >
+        <div className='home-page__content__post__top'>
+          <div className='home-page__content__post__top__profil'>
+            <div className='home-page__content__post__top__profil__picture'>
+              <img src={authorImage} alt=''/>
+            </div>
+            <p>{author}</p>
           </div>
-          <p>{author}</p>
-        </div>
-        <div className='home-page__content__post__top__content'>
-          <div className='home-page__content__post__top__content__text'>
-            <p>{title}</p>
+          <div className='home-page__content__post__top__content'>
+            <div className='home-page__content__post__top__content__text'>
+              <p>{text}</p>
+            </div>
+            <div className='home-page__content__post__top__content__img'>
+              <img src={image} alt=''/>
+            </div>
           </div>
-          <div className='home-page__content__post__top__content__img'>
-          </div>
         </div>
-      </div>
-      <div className='home-page__content__post__bottom'>
-        <LikeButton />
-        <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
-        <span id='post-settings' className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} />
-        <div id='post-settings__menu'>
-          <p onClick={() => {
-            window.location.href = '/newpost';
-          }}>Modifier</p>
-          <p>Supprimer</p>
+        <div className='home-page__content__post__bottom'>
+          <LikeButton 
+          id={id}
+          authorId={authorId}
+          />
+          <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
+          <span id='post-settings' className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} />
+          <div id='post-settings__menu' data-set={authorId}>
+            <p onClick={() => modify(id)}>Modifier</p>
+            <p onClick={() => deletePost(id)}>Supprimer</p>
+          </div>  
+          </span>
         </div>
-        </span>
-      </div>
     </article>
   )
 }
