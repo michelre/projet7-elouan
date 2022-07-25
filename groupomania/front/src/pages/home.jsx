@@ -28,7 +28,6 @@ function Home() {
     })*/
 
     const modify = (id) => {
-      console.log(id);
         window.location.href = `/newpost?id=${id}`;
     }
 

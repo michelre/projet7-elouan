@@ -122,3 +122,17 @@ export const like = (id) => {
     }
   )
 }
+
+export const logout = () => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    'http://localhost:4000/api/auth/logout', {
+    method: 'POST',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    }
+  )
+}

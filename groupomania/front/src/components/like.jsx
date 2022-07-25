@@ -14,7 +14,6 @@ function Like ({ authorId, id }) {
   getOne(id)
     .then(res => {
       res.json().then(data => {
-        console.log(data);
         setLikeInt(data.likes)
       })
     })

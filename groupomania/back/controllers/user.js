@@ -71,7 +71,6 @@ exports.logout = (req, res, next) => {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       } else {
         req.session.destroy();
-        res.redirect('/login');
         res.status(200).json({ message: 'Logout successful' });
       }
     })
