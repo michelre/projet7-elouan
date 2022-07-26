@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import LikeButton from './like';
-import { deletePost } from '../api';
 
-function Post ({author, authorId, text, image, authorImage, modify, id}) {
+function Post ({author, authorId, text, image, authorImage, modify, id, liked, deletePost}) {
   return (
     <article className='home-page__content__post' >
         <div className='home-page__content__post__top'>
@@ -29,6 +28,7 @@ function Post ({author, authorId, text, image, authorImage, modify, id}) {
           <LikeButton 
           id={id}
           authorId={authorId}
+          liked={liked}
           />
           <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
           <span id='post-settings' className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} />

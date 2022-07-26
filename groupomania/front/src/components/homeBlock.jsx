@@ -4,7 +4,7 @@ import Post from './post';
 import Menu from './menu';
 import NewPostButton from './newPostButton';
 
-function HomeBlock ({posts, sortPosts, sortedType, modify}) {
+function HomeBlock ({posts, sortPosts, sortedType, modify, deletePost}) {
   return (
     <section className='home-page'>
       <div className="home-page__scrolling-menu">
@@ -23,6 +23,8 @@ function HomeBlock ({posts, sortPosts, sortedType, modify}) {
               text={post.text}
               image={post.image}
               modify={modify}
+              liked={post.liked}
+              deletePost={deletePost}
           />)}
         </div>
         <NewPostButton />

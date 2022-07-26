@@ -6,9 +6,11 @@ import { create, modifyPost, getOne } from "../api";
 
 function NewPost() {
   const [img, setImg] = useState();
+  const [imgForm, setImgForm] = useState();
   const onImageChange = (e) => {
     const [file] = e.target.files;
     setImg(URL.createObjectURL(file));
+    setImgForm(file)
   };
 
   const deleteImage = () => {
@@ -30,10 +32,10 @@ function NewPost() {
       });
   }
 
-  const HandleSubmit = (e) => { 
+  const HandleSubmit = (e, post) => {
     e.preventDefault();
     if (id) {
-      modifyPost(id)
+      modifyPost(id, post)
         .then(response => {
           response.json().then(data => {
             console.log(data);
@@ -43,7 +45,7 @@ function NewPost() {
           console.log(error);
         })
     } else {
-      create()
+      create(post)
       .then(response => {
         response.json().then (data => {
           console.log(data);
@@ -58,11 +60,11 @@ function NewPost() {
 
   return (
     <React.StrictMode>
-      <NewPostBlock 
+      <NewPostBlock
       onImageChange={onImageChange}
       deleteImage={deleteImage}
       img={img}
-      HandleSubmit={HandleSubmit}
+      HandleSubmit={(e, post) => HandleSubmit(e, post)}
       />
     </React.StrictMode>
   );

@@ -24,8 +24,15 @@ exports.create = (req, res, next) => {
 
 exports.getAll = (req, res, next) => {
   Post.findAll({
+    attributes: {
+      include : [
+        [db.sequelize.literal(`(SELECT 1 FROM likes WHERE likes.userId = ${req.userId} AND likes.postId = post.id)`), 'liked']
+      ]
+    },
     include: [{
       model: User, as: 'user', attributes: ['name', 'image'],
+    }, {
+      model: Likes,
     }],
   })
     .then((posts) =>  res.status(200).json(posts))

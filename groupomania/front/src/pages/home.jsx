@@ -1,7 +1,7 @@
 import HomeBlock from '../components/homeBlock';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { getAll } from '../api';
+import { getAll, deletePost } from '../api';
 
 
 function Home() {
@@ -18,17 +18,9 @@ function Home() {
         })
     }, [])
 
-    /*posts.forEach(post => {
-      if (+localStorage.getItem('userId') === post.userId && document.getElementById('post-settings')) {
-        console.log(+localStorage.getItem('userId'), post.userId);
-        document.getElementById('post-settings').style.display = 'flex';
-      } else {
-        //document.getElementById('post-settings').style={display: 'none'};
-      }
-    })*/
-
     const modify = (id) => {
-        window.location.href = `/newpost?id=${id}`;
+      //mettre le redirect de react
+      window.location.href = `/newpost?id=${id}`;
     }
 
     const sortPosts = (sortedType) => {
@@ -43,6 +35,19 @@ function Home() {
         }
     }
 
+    const deletePostAction = (id) => {
+      deletePost(id)
+      .then(() => {
+        return getAll()
+      })
+      .then(response => {
+        response.json().then (data => {
+          setPosts(data);
+          return data;
+        });
+      })
+    }
+
   return (
     <React.StrictMode>
       <HomeBlock
@@ -50,21 +55,10 @@ function Home() {
           posts={posts}
           sortedType={sortedType}
           sortPosts={sortPosts}
+          deletePost={deletePostAction}
       />
     </React.StrictMode>
   );
 }
 
 export default Home
-
-
-
-
-
-/*for (let i = 0; i < data.length; i++) {
-        let temp = +localStorage.getItem('userId');
-        if (data[i].userId === temp) {
-          const setings = document.getElementById('#post-settings__menu');
-          setings.style={display: 'flex'};
-        }
-      } */
