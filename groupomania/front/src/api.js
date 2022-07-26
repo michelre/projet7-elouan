@@ -134,3 +134,17 @@ export const logout = () => {
     }
   )
 }
+
+export const getUser = (user) => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    `http://localhost:4000/api/auth/profile/${user}`, {
+    method: 'GET',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  }
+  )
+}

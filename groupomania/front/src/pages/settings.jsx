@@ -8,8 +8,9 @@ function Settings () {
     logout()
     .then(response => {
       if (response.status === 200) {
+        // mettre le redirect de react
         window.location.href = '/login';
-        localStorage.removeItem('userId');
+        localStorage.removeItem('user');
         localStorage.removeItem('token');
       } else {
         console.log('error');

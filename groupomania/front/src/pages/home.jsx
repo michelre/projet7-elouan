@@ -19,8 +19,7 @@ function Home() {
     }, [])
 
     const modify = (id) => {
-      //mettre le redirect de react
-      window.location.href = `/newpost?id=${id}`;
+      
     }
 
     const sortPosts = (sortedType) => {

@@ -8,7 +8,7 @@ function SinglePost() {
   return (
     <React.StrictMode>
       <Header />
-      <Post />
+      
       <Menu />
     </React.StrictMode>
   );

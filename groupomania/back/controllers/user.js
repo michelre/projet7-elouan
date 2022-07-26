@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../models');
 const fs = require('fs');
-const session = require('express-session');
 require('dotenv').config();
 
 const User = db.user;
@@ -48,8 +47,6 @@ exports.login = (req, res, next) => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
-          req.session.userId = user.id;
-          req.session.save(() => {})
           res.status(200).json({
             userId: user.id,
             token: jwt.sign(
@@ -70,7 +67,6 @@ exports.logout = (req, res, next) => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       } else {
-        req.session.destroy();
         res.status(200).json({ message: 'Logout successful' });
       }
     })
@@ -115,4 +111,21 @@ exports.deleteProfilePicture = (req, res, next) => {
           .catch(error => res.status(500).json({ error }));
       }
     })
+}
+
+exports.getOne = (req, res, next) => {
+  User.findOne ({where: {id: req.params.id}})
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+      } else {
+        res.status(200).json({
+          id: user.id,
+          name: user.name,
+          email:user.email,
+          image:user.image
+        });
+      }
+    })
+    .catch(error => res.status(500).json({ error }));
 }

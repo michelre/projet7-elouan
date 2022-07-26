@@ -18,5 +18,6 @@ router.post('/login', connectionLimit, userCtrl.login);
 router.post('/logout', auth, userCtrl.logout);
 router.put('/profilePicture', auth, multer, userCtrl.setProfilePicture);
 router.put('/deleteProfilePicture', auth, userCtrl.deleteProfilePicture);
+router.get('/profile/:id', auth, userCtrl.getOne);
 
 module.exports = router;

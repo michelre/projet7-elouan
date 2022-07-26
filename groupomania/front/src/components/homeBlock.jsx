@@ -30,7 +30,6 @@ function HomeBlock ({posts, sortPosts, sortedType, modify, deletePost}) {
         <NewPostButton />
         <Menu />
       </div>
-      
     </section>
   )
 };

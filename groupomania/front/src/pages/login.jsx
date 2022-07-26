@@ -10,7 +10,7 @@ async function loginFetch () {
         response.json().then (token => {
           const userId = token.userId;
           const Token = (token.token);
-          localStorage.setItem('userId', userId);
+          localStorage.setItem('user', userId);
           localStorage.setItem('token', Token);
           window.location.href = '/';
         });
