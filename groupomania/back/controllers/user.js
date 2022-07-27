@@ -74,45 +74,32 @@ exports.logout = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-exports.setProfilePicture = (req, res, next) => {
+exports.updateUser = (req, res, next) => {
   User.findOne ({where: {id: req.userId}})
     .then(user => {
-      if (!user) {
-        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-      } else {
-        const User = {
-          ...user,
-          image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        }
-        user.update(User, {where:{ id: req.params.id }})
-        .then(() => res.status(200).json({ message: 'Profile picture updated' }))
-        .catch(error => res.status(500).json({ error }));
-      }
-    })
-};
-
-exports.deleteProfilePicture = (req, res, next) => {
-  User.findOne ({where: {id: req.userId}})
-    .then(user => {
-      if (!user) {
-        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-      } else {
+      if (req.userId === user.id) {
+        if (req.file) {
         const imageName = user.image.split('/images/')[1];
           fs.unlink(`images/${imageName}`, (error) => {
             if (error) {
               return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
             }
-          })
-        const User = {
-          ...user,
-          image: 'https://res.cloudinary.com/dzqbzqgjm/image/upload/v1599098981/default-profile-picture_qjqjqj.png'
+          })  
         }
-        user.update(User, {where:{ id: req.params.id }})
-          .then(() => res.status(200).json({ message: 'Profile picture deleted' }))
-          .catch(error => res.status(500).json({ error }));
+        const temp = JSON.stringify(req.body);
+        const userObject = JSON.parse(temp);
+        const useR = req.file ? {
+          ...userObject,
+          image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : {...userObject,};
+        User.update(useR, {where:{ id: req.params.id }})
+          .then(() => res.status(200).json({ message: 'Utilisateur modifié !' }))
+          .catch(error => res.status(400).json({ error }));
+      } else {
+        return res.status(401).json({ error: 'Vous n\'avez pas le droit d\'effectuer cette action !' });
       }
     })
-}
+};
 
 exports.getOne = (req, res, next) => {
   User.findOne ({where: {id: req.params.id}})

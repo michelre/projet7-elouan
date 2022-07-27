@@ -5,7 +5,7 @@ import Menu from '../components/menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAltSlash, } from '@fortawesome/free-solid-svg-icons'
 
-function ProfileBlock ({imgProfile, onImageChange}) {
+function ProfileBlock ({imgProfile, onImageChange, username, }) {
   return (
     <section className='profile-page'>
       <Header />
@@ -21,7 +21,7 @@ function ProfileBlock ({imgProfile, onImageChange}) {
               className='profile-page__content__top__upload-image'
               onChange={onImageChange}
               ></input>
-              <input className='profile-page__content__top__username-input' type='text' name='username' placeholder='username'></input>
+              <input className='profile-page__content__top__username-input' type='text' name='username' placeholder='username' value={username}></input>
               <button className='profile-page__content__top__button'>Save</button>
             </form>
           </div>
