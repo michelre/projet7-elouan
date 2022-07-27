@@ -1,17 +1,13 @@
 import React, {useState} from 'react';
 import ProfileBlock from '../components/profileBlock';
-import { getUser } from '../api';
+import { getUser, updateUser } from '../api';
 
 function SinglePost() {
-  const user = localStorage.getItem('user');
+  const userId = localStorage.getItem('user');
   const [imgProfile, setImgProfile] = useState();
   const [username, setUsername] = useState();
-  const onImageChange = (e) => {
-    const [file] = e.target.files;
-    setImgProfile(URL.createObjectURL(file));
-  }
 
-  getUser(user)
+  getUser(userId)
     .then(response => {
       response.json().then(data => {
         setUsername(data.name);
@@ -22,15 +18,23 @@ function SinglePost() {
       console.log(error);
     })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, user) => {
     e.preventDefault();
-    
+    updateUser(user)
+      .then(response => {
+        response.json().then(data => {
+          console.log(data);
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   return (
     <React.StrictMode>
       <ProfileBlock
-      onImageChange={onImageChange}
+      handleSubmit={handleSubmit}
       imgProfile={imgProfile}
       username={username}
       />

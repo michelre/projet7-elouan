@@ -149,6 +149,24 @@ export const getUser = (user) => {
   )
 }
 
+export const updateUser = ( user) => {
+  const token = localStorage.getItem('token')
+  const userId = localStorage.getItem('user')
+  const formData = new FormData()
+  formData.append('name', user.name)
+  formData.append('image', user.image)
+  return fetch (
+    `http://localhost:4000/api/auth/${userId}`, {
+    method: 'PUT',
+    headers: {
+      "Accept": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: formData
+    }
+  )
+}
+
 export const deleteUser = (user) => {
   const token = localStorage.getItem('token')
   return fetch (

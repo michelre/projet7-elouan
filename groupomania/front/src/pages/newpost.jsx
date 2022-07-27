@@ -10,7 +10,7 @@ function NewPost() {
   const onImageChange = (e) => {
     const [file] = e.target.files;
     setImg(URL.createObjectURL(file));
-    setImgForm(file)
+    setImg(file)
   };
 
   const deleteImage = () => {
@@ -46,15 +46,15 @@ function NewPost() {
         })
     } else {
       create(post)
-      .then(response => {
-        response.json().then (data => {
-          console.log(data);
-          window.location.href = '/';
+        .then(response => {
+          response.json().then (data => {
+            console.log(data);
+            window.location.href = '/';
+          })
         })
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
 
