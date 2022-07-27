@@ -5,6 +5,7 @@ const fs = require('fs');
 require('dotenv').config();
 
 const User = db.user;
+const Post = db.post;
 
 exports.signup = (req, res, next) => {
   User.findOne ({where: {email: req.body.email}})
@@ -125,6 +126,33 @@ exports.getOne = (req, res, next) => {
           email:user.email,
           image:user.image
         });
+      }
+    })
+    .catch(error => res.status(500).json({ error }));
+}
+
+exports.deleteUser = (req, res, next) => {
+  User.findOne ({where: {id: req.params.id}})
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+      } else {
+        if (user.image !== 'https://res.cloudinary.com/dzqbzqgjm/image/upload/v1599098981/default-profile-picture_qjqjqj.png') {
+        const imageName = user.image.split('/images/')[1];
+          fs.unlink(`images/${imageName}`, (error) => {
+            if (error) {
+              return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
+            }
+          })
+        }
+        Post.destroy({where: {userId: req.params.id}})
+          .then(() => {
+            res.status(200).json({ message: 'Post of the user has been deleted' });
+          })
+          .catch(error => res.status(500).json({ error }));
+        user.destroy()
+          .then(() => res.status(200).json({ message: 'User deleted' }))
+          .catch(error => res.status(500).json({ error }));
       }
     })
     .catch(error => res.status(500).json({ error }));

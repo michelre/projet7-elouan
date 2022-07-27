@@ -148,3 +148,17 @@ export const getUser = (user) => {
   }
   )
 }
+
+export const deleteUser = (user) => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    `http://localhost:4000/api/auth/${user}`, {
+    method: 'DELETE',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  }
+  )
+}
