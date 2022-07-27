@@ -1,15 +1,19 @@
-import React from 'react';
-import '../styles/style.css';
-import Header from '../components/header';
-import Menu from '../components/menu';
-import Post from '../components/post';
+import React, {useState} from 'react';
+import ProfileBlock from '../components/profileBlock';
 
 function SinglePost() {
+  const [imgProfile, setImgProfile] = useState();
+  const onImageChange = (e) => {
+    const [file] = e.target.files;
+    setImgProfile(URL.createObjectURL(file));
+  }
+
   return (
     <React.StrictMode>
-      <Header />
-      
-      <Menu />
+      <ProfileBlock
+      onImageChange={onImageChange}
+      imgProfile={imgProfile}
+      />
     </React.StrictMode>
   );
 }

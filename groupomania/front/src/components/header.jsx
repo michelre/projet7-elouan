@@ -15,6 +15,12 @@ function Header () {
         <h1>New Post</h1>
       </div>
     )
+  } else if (pageName === 'profile') {
+    return (
+      <div className='header'>
+        <h1>Profile</h1>
+      </div>
+    )
   } else {
     return (
       <div className='header'>
