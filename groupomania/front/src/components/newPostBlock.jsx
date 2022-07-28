@@ -9,7 +9,6 @@ import { faImage  } from '@fortawesome/free-solid-svg-icons'
 function NewPostBlock ({onImageChange, img, deleteImage, HandleSubmit}) {  
   const [text, setText] = useState('');
   const [image, setImage] = useState(null);
-
   return (
     <section className='newpost-page'>
       <Header />
@@ -21,7 +20,6 @@ function NewPostBlock ({onImageChange, img, deleteImage, HandleSubmit}) {
           id='add-text' 
           className='newpost-page__content__form__add-text' 
           type='text' 
-          placeholder='Ajouter du texte' 
           />
           <label for='add-text'></label>
           <input

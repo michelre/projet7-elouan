@@ -2,8 +2,6 @@ import '../styles/style.css';
 import React, {useState} from 'react';
 import Header from '../components/header';
 import Menu from '../components/menu';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserAltSlash, } from '@fortawesome/free-solid-svg-icons'
 
 function ProfileBlock ({imgProfile, username, handleSubmit}) {
   const [image, setImage] = useState(null);
@@ -38,10 +36,6 @@ function ProfileBlock ({imgProfile, username, handleSubmit}) {
             </form>
           </div>
           <div className='profile-page__content__bottom'>
-            <div className='profile-page__content__bottom__element'>
-              <FontAwesomeIcon className='profile-page__content__bottom__element__icon' icon={faUserAltSlash} />
-              <p>Supprimer le compte</p>
-            </div>
           </div>
         </div>
       <Menu />

@@ -4,13 +4,15 @@ import Menu from './menu';
 import Header from './header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightFromBracket, faUserAltSlash, } from '@fortawesome/free-solid-svg-icons'
+import ConfirmationMessage from './confirmationMessage';
 
-function Settings ({ handleSubmit }) {
+function Settings ({ handleSubmit, confirmationMessage}) {
   return (
     <section className='settings-page'>
       <Header />
-      <div onClick={handleSubmit} className='settings-page__list'>
-        <div className='settings-page__list__element'>
+      <ConfirmationMessage handleSubmit={handleSubmit} />
+      <div className='settings-page__list'>
+        <div onClick={confirmationMessage} className='settings-page__list__element'>
           <FontAwesomeIcon className='settings-page__list__element__icon' icon={faArrowRightFromBracket} />
           <p>Se Déconnecter</p>
         </div>

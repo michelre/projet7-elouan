@@ -1,9 +1,10 @@
 import LoginBlock from '../components/loginBlock';
 import React from 'react';
 import {login} from '../api';
+//import { useNavigate } from 'react-router-dom'
 
 
-async function loginFetch () {
+async function LoginFetch () {
   await login()
     .then((response) => { 
       if (response.status === 200) {
@@ -12,7 +13,7 @@ async function loginFetch () {
           const Token = (token.token);
           localStorage.setItem('user', userId);
           localStorage.setItem('token', Token);
-          window.location.href = '/';
+          window.location.href= '/';
         });
       }
     })
@@ -22,8 +23,8 @@ async function loginFetch () {
 function Login() {
   const handleSubmit = event => {
     event.preventDefault();
-    loginFetch()
-    }
+    LoginFetch()
+  }
   return (
     <React.StrictMode>
       <LoginBlock

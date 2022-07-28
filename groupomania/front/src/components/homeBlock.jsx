@@ -4,9 +4,10 @@ import Post from './post';
 import Menu from './menu';
 import NewPostButton from './newPostButton';
 
-function HomeBlock ({posts, sortPosts, sortedType, modify, deletePost}) {
+function HomeBlock ({posts, sortPosts, sortedType, modify, deletePost, confirmationMessage}) {
   return (
     <section className='home-page'>
+      
       <div className="home-page__scrolling-menu">
         <select value={sortedType} onChange={(e) => sortPosts(e.target.value)}>
           <option value={'date'}>Dernier post</option>

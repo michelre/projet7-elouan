@@ -94,7 +94,7 @@ exports.updateOne = (req, res, next) => {
         const post = req.file ? {
           ...postObject,
           image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        } : { ...postObject };
+        } : { ...postObject};
         Post.update(post, {where:{ id: req.params.id }})
           .then(() => res.status(200).json({ message: 'Post modifié !' }))
           .catch(error => res.status(400).json({ error }));
