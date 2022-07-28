@@ -19,28 +19,28 @@ module.exports = (req, res, next) => {
   } else {
     switch (true) {
       case req.body.password === '':
-        res.status(400).json({ error: 'Veuillez entrez un mot de passe' });
+        res.status(403).json({ error: 'Veuillez entrez un mot de passe' });
         break;
       case req.body.password.length < 8:
-        res.status(400).json({ error: 'Password must be at least 8 characters long' });
+        res.status(411).json({ error: 'Password must be at least 8 characters long' });
         break;
       case req.body.password.length > 40:
-        res.status(400).json({ error: 'Password must be at most 40 characters long' });
+        res.status(416).json({ error: 'Password must be at most 40 characters long' });
         break;
       case !req.body.password.match(/[A-Z]/):
-        res.status(400).json({ error: 'Password must contain at least one uppercase letter' });
+        res.status(428).json({ error: 'Password must contain at least one uppercase letter' });
         break;
       case !req.body.password.match(/[a-z]/):
-        res.status(400).json({ error: 'Password must contain at least one lowercase letter' });
+        res.status(428).json({ error: 'Password must contain at least one lowercase letter' });
         break;
       case !req.body.password.match(/[0-9]{2}/):
-        res.status(400).json({ error: 'Password must contain at least two digits' });
+        res.status(428).json({ error: 'Password must contain at least two digits' });
         break;
       case req.body.password.match(/\s/):
         res.status(400).json({ error: 'Password must not contain any spaces' });
         break;
       case req.body.password === 'password' || req.body.password === '123' || req.body.password === 'Passw0rd' || req.body.password === 'Password123':
-        res.status(400).json({ error: 'Password must not be a default password' });
+        res.status(412).json({ error: 'Password must not be a default password' });
         break;
       case !validator.isEmail(req.body.password):
         res.status(400).json({ error: 'Password must not be an email' });

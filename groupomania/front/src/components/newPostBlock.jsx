@@ -35,7 +35,7 @@ function NewPostBlock ({onImageChange, img, deleteImage, HandleSubmit}) {
           <label for="file-input" className='newpost-page__content__form__upload-image__label'><FontAwesomeIcon className='newpost-page__content__form__upload-image__label__icon' icon={faImage} /></label>
           {img && (
             <div className='newpost-page__content__form__image-container'>
-              <img className='newpost-page__content__form__upload-image__img' src={img} alt='' />
+              <img className='newpost-page__content__form__upload-image__img' src={image} alt='' />
               <button className='newpost-page__content__form__upload-image__delete' onClick={deleteImage}>Supprimer</button>
             </div>
           )}

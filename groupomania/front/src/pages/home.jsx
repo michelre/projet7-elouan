@@ -28,9 +28,33 @@ function Home() {
             const newPosts = posts.sort((a, b) => a.id - b.id)
             setPosts([].concat(newPosts))
         }
+
         if(sortedType === 'popularity'){
-            const newPosts = posts.sort((a, b) => b.likes - a.likes)
-            setPosts([].concat(newPosts))
+          getAll()
+          .then(response => {
+            response.json().then (data => {
+              for (let i = 0; i < data.length; i++) {
+                if (data[i].liked === null) {
+                  data[i].liked = 0;
+                }
+                
+              }
+              function compare (a, b) {
+                if (a.liked < b.liked) {
+                  return 1;
+                }
+                if (a.liked > b.liked) {
+                  return -1;
+                }
+                return 0;
+              }
+              const temp = data.sort(compare)
+              setPosts(temp);
+              /*const newPosts = posts.sort((a, b) => b. - a.likes)
+              setPosts([].concat(newPosts))*/
+            });
+          })
+            
         }
     }
 

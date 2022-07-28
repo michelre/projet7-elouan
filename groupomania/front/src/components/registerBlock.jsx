@@ -16,15 +16,15 @@ function RegisterBlock({ handleSubmit }) {
         <form onSubmit={handleSubmit} className='login-register__block__content__form'>
           <label>E-mail</label>
           <input type='text' name='username' placeholder='username'/>
-          <p>{/*Error message when username is wrong*/}</p>
+          <p>{/*Veuillez entrez un nom d'utilisateur*/}</p>
           <input type="email" name="email" placeholder="E-mail" />
-          <p>{/*Error message when email is wrong*/}</p>
+          <p id='email-error'>{/*Error message when email is wrong*/}</p>
           <label>Mot de passe</label>
           <input type="password" name="password" placeholder="Mot de passe" />
-          <p>{/*Error message when password is wrong*/}</p>
+          <p id='password-error'>{/*Error message when password is wrong*/}</p>
           <label>Confirmation du mot de passe</label>
           <input type="password" name="passwordConfirmation" placeholder="Confirmation" />
-          <p>{/*Error message when password confirmation is wrong*/}</p>
+          <p >{/*Error message when password confirmation is wrong*/}</p>
           <button type="submit">S'inscrire</button>
         </form>
         <p className='connection-link'>Déjà un compte ? <Link className='connection-link__Link' to="/login">Connectez-vous</Link></p>

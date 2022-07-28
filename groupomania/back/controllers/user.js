@@ -16,9 +16,9 @@ exports.signup = (req, res, next) => {
       if (req.body.email === '') {
         return res.status(400).json({ error: 'Veuillez entrez une addresse mail' });
       } else if (req.body.passwordConfirmation === '') {
-          return res.status(400).json({ error: 'Veuillez confirmer le mot de passe' });
+          return res.status(412).json({ error: 'Veuillez confirmer le mot de passe' });
       } else if (req.body.passwordConfirmation !== req.body.password) {
-          return res.status(400).json({ error: 'Les mots de passe ne correspondent pas !' });
+          return res.status(412).json({ error: 'Les mots de passe ne correspondent pas !' });
       } else {
         bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -121,9 +121,7 @@ exports.getOne = (req, res, next) => {
 exports.deleteUser = (req, res, next) => {
   User.findOne ({where: {id: req.params.id}})
     .then(user => {
-      if (!user) {
-        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-      } else {
+      if (req.userId === user.id) {
         if (user.image !== 'https://res.cloudinary.com/dzqbzqgjm/image/upload/v1599098981/default-profile-picture_qjqjqj.png') {
         const imageName = user.image.split('/images/')[1];
           fs.unlink(`images/${imageName}`, (error) => {
@@ -140,6 +138,8 @@ exports.deleteUser = (req, res, next) => {
         user.destroy()
           .then(() => res.status(205).json({ message: 'User deleted' }))
           .catch(error => res.status(500).json({ error }));
+      } else {
+        return res.status(401).json({ error: 'Vous n\'avez pas le droit d\'effectuer cette action !' });
       }
     })
     .catch(error => res.status(500).json({ error }));

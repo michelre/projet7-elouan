@@ -167,8 +167,9 @@ export const updateUser = ( user) => {
   )
 }
 
-export const deleteUser = (user) => {
+export const deleteUser = () => {
   const token = localStorage.getItem('token')
+  const user = localStorage.getItem('user')
   return fetch (
     `http://localhost:4000/api/auth/${user}`, {
     method: 'DELETE',

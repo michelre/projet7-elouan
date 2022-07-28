@@ -1,3 +1,14 @@
+@keyframes invalidInput {
+  25% {
+    transform: translateX(4px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
 .new-post-button {
   width: 50px;
   height: 50px;
@@ -65,6 +76,11 @@ html, body {
   align-items: center;
   justify-content: center;
   font-family: "Lato", sans-serif;
+}
+
+input:invalid {
+  background-color: rgb(255, 176, 176);
+  animation: invalidInput 0.5s ease-in-out;
 }
 
 .login-register {
@@ -194,6 +210,18 @@ html, body {
 }
 .connection-link__Link :hover {
   color: #FFD7D7;
+}
+
+#password-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+#email-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
 }
 
 .home-page {
