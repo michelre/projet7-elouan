@@ -19,51 +19,17 @@ function Home() {
     }, [])
 
     const modify = (id) => {
-      
+
     }
 
     const sortPosts = (sortedType) => {
         setSortedType(sortedType)
-        if(sortedType === 'date'){
-          getAll()
-          .then(response => {
-            response.json().then (data => {
-              function compareDate (a, b) {
-                if (a.createdAt < b.createdAt) {
-                  return 1;
-                }
-                if (a.createdAt > b.createdAt) {
-                  return -1;
-                }
-                return 0;
-              }
-              data.sort(compareDate);
-              setPosts(data);
-            });
-          })
-        }
-
-        if(sortedType === 'popularity'){
-          getAll()
-          .then(response => {
-            response.json().then (data => {
-              function compareLikes (a, b) {
-                if (a.likes < b.likes) {
-                  return 1;
-                }
-                if (a.likes > b.likes) {
-                  return -1;
-                }
-                return 0;
-              }
-              data.sort(compareLikes)
-              setPosts(data);
-            });
-          })
-          .catch(error => {
-            console.log(error);
-          })
-        }
+        getAll(sortedType)
+            .then(response => {
+                response.json().then (data => {
+                    setPosts(data);
+                });
+            })
     }
 
     const deletePostAction = (id) => {

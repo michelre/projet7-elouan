@@ -51,7 +51,7 @@ exports.login = (req, res, next) => {
           res.status(200).json({
             userId: user.id,
             token: jwt.sign(
-              { userId: user.id },
+              { userId: user.id, isAdmin: user.isAdmin },
               process.env.TOKEN,
               { expiresIn: '24h' }
             )
@@ -82,9 +82,10 @@ exports.updateUser = (req, res, next) => {
         const imageName = user.image.split('/images/')[1];
           fs.unlink(`images/${imageName}`, (error) => {
             if (error) {
-              return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
+              res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
+              return
             }
-          })  
+          })
         }
         const temp = JSON.stringify(req.body);
         const userObject = JSON.parse(temp);

@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
     passwordConfirmation: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   })
   return User

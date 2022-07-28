@@ -17,6 +17,7 @@ function HomeBlock ({posts, sortPosts, sortedType, modify, deletePost, confirmat
         <div className="home-page__content">
           {posts.map(post => <Post
               id={post.id}
+              key={post.id}
               authorId={post.userId}
               author={post.user.name}
               authorImage={post.user.image}
@@ -25,6 +26,7 @@ function HomeBlock ({posts, sortPosts, sortedType, modify, deletePost, confirmat
               modify={modify}
               liked={post.liked}
               deletePost={deletePost}
+              modifiable={post.modifiable}
           />)}
         </div>
         <NewPostButton />
