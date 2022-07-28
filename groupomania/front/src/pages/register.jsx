@@ -1,21 +1,19 @@
 import RegisterBlock from '../components/registerBlock';
 import React from 'react';
 import {signup} from '../api';
-import { useNavigate } from 'react-router-dom'
 
-function RegisterFetch () {
-  const navigate = useNavigate();
+function registerFetch () {
   signup()
     .then(response => {
       if (response.status === 201) {
-        navigate('/login');
+        window.location.href = '/login';
       }
     })
 }
 
 function Register() {
   const handleSubmit = event => {
-    RegisterFetch()
+    registerFetch()
     event.preventDefault();
   }
   return (

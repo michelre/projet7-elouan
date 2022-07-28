@@ -235,6 +235,7 @@ html, body {
   overflow: auto;
   display: block;
   width: 100%;
+  height: 90%;
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .home-page__content {
@@ -247,12 +248,14 @@ html, body {
   .home-page__content {
     height: 100%;
     width: 85%;
-    margin-top: 80px;
+    margin-top: 85px;
   }
 }
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1600px) {
   .home-page__content {
-    margin-top: 110px;
+    margin-top: 0px;
+    margin-bottom: 0;
+    width: 85%;
   }
 }
 .home-page__content-menu {
@@ -484,6 +487,14 @@ html, body {
     margin: 6px 0 0 8px;
     display: block;
     font-size: 20px;
+    color: #FD2D01;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .menu__icon p {
+    margin: 6px 0 0 8px;
+    display: block;
+    font-size: 42px;
     color: #FD2D01;
   }
 }

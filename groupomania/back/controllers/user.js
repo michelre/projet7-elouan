@@ -138,7 +138,7 @@ exports.deleteUser = (req, res, next) => {
           })
           .catch(error => res.status(500).json({ error }));
         user.destroy()
-          .then(() => res.status(200).json({ message: 'User deleted' }))
+          .then(() => res.status(205).json({ message: 'User deleted' }))
           .catch(error => res.status(500).json({ error }));
       }
     })
