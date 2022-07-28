@@ -1,3 +1,14 @@
+@keyframes invalidInput {
+  25% {
+    transform: translateX(4px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
 .new-post-button {
   width: 50px;
   height: 50px;
@@ -67,9 +78,9 @@ html, body {
   font-family: "Lato", sans-serif;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+input:invalid {
+  background-color: rgb(255, 176, 176);
+  animation: invalidInput 0.5s ease-in-out;
 }
 
 .login-register {
@@ -201,6 +212,18 @@ a {
   color: #FFD7D7;
 }
 
+#password-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+#email-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
 .home-page {
   position: relative;
   display: flex;
@@ -253,12 +276,14 @@ a {
   .home-page__content {
     height: 100%;
     width: 85%;
-    margin-top: 80px;
+    margin-top: 85px;
   }
 }
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1600px) {
   .home-page__content {
-    margin-top: 110px;
+    margin-top: 0px;
+    margin-bottom: 0;
+    width: 85%;
   }
 }
 .home-page__content-menu {
@@ -292,13 +317,6 @@ a {
   justify-content: center;
   margin: 10px 10px 10px 10px;
   padding: 10px 10px 10px 10px;
-  /*@media screen and (min-width: 426px) and (max-width: 768px) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-  }*/
 }
 .home-page__content__post__top {
   display: flex;
@@ -367,16 +385,14 @@ a {
 }
 .home-page__content__post__top__content__img {
   display: block;
-  width: 100%;
-  height: auto;
-  max-height: 100%;
   overflow: hidden;
   border-radius: 10px;
 }
 .home-page__content__post__top__content__img img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
 }
 .home-page__content__post__bottom {
   display: flex;
@@ -464,10 +480,6 @@ a {
   }
 }
 
-#temp {
-  font-size: 40px;
-}
-
 .menu {
   background-color: white;
   width: 100%;
@@ -503,6 +515,14 @@ a {
     margin: 6px 0 0 8px;
     display: block;
     font-size: 20px;
+    color: #FD2D01;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .menu__icon p {
+    margin: 6px 0 0 8px;
+    display: block;
+    font-size: 42px;
     color: #FD2D01;
   }
 }
@@ -688,6 +708,185 @@ a {
   height: 50%;
   color: #FD2D01;
   font-size: 28px;
+}
+
+.profile-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+}
+.profile-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+}
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .profile-page__content {
+    margin-left: 40px;
+  }
+}
+.profile-page__content__top form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.profile-page__content__top img {
+  width: 40%;
+  height: 40%;
+  object-fit: cover;
+  clip-path: circle();
+  margin-bottom: 10px;
+}
+.profile-page__content__top__username-input {
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid #4E5166;
+  padding: 0 10px;
+  font-size: 16px;
+  color: #FD2D01;
+  padding-top: 6px;
+  margin-bottom: 20px;
+  font-family: "Lato", sans-serif;
+}
+.profile-page__content__top__username-input:focus {
+  outline: none;
+  border-color: #FD2D01;
+}
+.profile-page__content__top__username-input:focus::placeholder {
+  color: #FD2D01;
+  vertical-align: text-top;
+}
+.profile-page__content__top__button {
+  margin-top: 20px;
+  width: 74%;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 5px;
+  color: white;
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #FD2D01;
+  transition: all 0.3s ease-in-out;
+}
+.profile-page__content__top__button:focus {
+  outline: none;
+}
+.profile-page__content__top__button:hover {
+  transform: scale(1.1);
+}
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+  .profile-page__content__top__button {
+    width: 54%;
+    font-size: 22px;
+  }
+}
+.profile-page__content__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .profile-page__content__bottom {
+    width: 85%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 70px;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .profile-page__content__bottom {
+    width: 80%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 140px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .profile-page__content__bottom {
+    margin-top: 20px;
+  }
+}
+.profile-page__content__bottom__element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: white;
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  padding: 10px 10px 10px 20px;
+  margin-top: 10px;
+}
+@media screen and (min-width: 768px) {
+  .profile-page__content__bottom__element {
+    width: 95%;
+  }
+}
+.profile-page__content__bottom__element__icon {
+  color: #FD2D01;
+  font-size: 28px;
+  margin-right: 10px;
+}
+.profile-page__content__bottom__element p {
+  font-size: 18px;
+  color: #4E5166;
+}
+
+.confirmation__box {
+  background-color: #202020;
+  opacity: 0.55;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.confirmation__box-message {
+  background-color: white;
+  width: 50%;
+  height: 25%;
+  border-radius: 10px;
+  z-index: 100;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 40%;
+  overflow-wrap: break-word;
+}
+.confirmation__box-message p {
+  font-size: 18px;
+  margin-left: 10px;
+}
+.confirmation__box-message button {
+  background: #FD2D01;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

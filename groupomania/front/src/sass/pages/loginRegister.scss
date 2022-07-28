@@ -80,3 +80,15 @@
     color: $color-secondary;
   }
 }
+
+#password-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+#email-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}

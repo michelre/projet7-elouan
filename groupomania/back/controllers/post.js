@@ -7,7 +7,7 @@ const User = db.user;
 const Likes = db.likes;
 
 exports.create = (req, res, next) => {
-  const postObjectTemp = JSON.stringify(req.body);
+  const postObjectTemp = JSON.stringify(req.body); 
   const postObject = JSON.parse(postObjectTemp);  //très très très mauvaise pratique
   delete postObject._id;
   let post = new Post({
@@ -25,7 +25,7 @@ exports.create = (req, res, next) => {
 exports.getAll = (req, res, next) => {
   Post.findAll({
     attributes: {
-      include: [
+      include : [
         [db.sequelize.literal(`(SELECT 1 FROM likes WHERE likes.userId = ${req.userId} AND likes.postId = post.id)`), 'liked']
       ]
     },
@@ -41,7 +41,7 @@ exports.getAll = (req, res, next) => {
 
 exports.getOne = (req, res, next) => {
   Post.findOne({where:{ id: req.params.id }})
-    .then((post) =>
+    .then((post) => 
     Likes.findAll({where:{ postId: req.params.id }})
       .then(likes => {
         let likesInt = likes.length;
@@ -87,14 +87,14 @@ exports.updateOne = (req, res, next) => {
             if (error) {
               return res.status(500).json({ error: 'Erreur lors de la suppression de l\'image' });
             }
-          })
+          })    
         }
         const temp = JSON.stringify(req.body);
         const postObject = JSON.parse(temp);
         const post = req.file ? {
           ...postObject,
           image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        } : { ...postObject };
+        } : { ...postObject};
         Post.update(post, {where:{ id: req.params.id }})
           .then(() => res.status(200).json({ message: 'Post modifié !' }))
           .catch(error => res.status(400).json({ error }));

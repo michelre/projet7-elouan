@@ -19,24 +19,24 @@ function Like ({ authorId, id, liked }) {
     })
     .catch(err => {})
 
-     const likeAction = (id) => {
-        like(id)
-            .then(res => {
-                if (res.status === 201) {
-                    setIsLiked(1)
-                    console.log("like ok")
-                } else if (res.status === 205) {
-                    setIsLiked(0)
-                    console.log("unlike ok")
-                }
-            })
-    }
+  const likeAction = (id) => {
+    like(id)
+      .then(res => {
+        if (res.status === 201) {
+          setIsLiked(1)
+          console.log('like ok')
+        } else if (res.status === 205) {
+          setIsLiked(0)
+          console.log('unlike ok')
+        }
+      })
+      .catch(err => {})
+  }
 
   return (
     <React.Fragment>
-      <span
-          onClick={() => likeAction(id)}
-          className='home-page__content__post__bottom__icon'>{isLiked ? solidHeart : emptyHeart}<span>{likeInt}</span></span>
+      <span onClick={() => likeAction(id)} 
+      className='home-page__content__post__bottom__icon'>{isLiked ? solidHeart : emptyHeart}<span>{likeInt}</span></span>
     </React.Fragment>
   )
 }

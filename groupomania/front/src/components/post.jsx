@@ -1,11 +1,11 @@
 import '../styles/style.css';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import LikeButton from './like';
+import { Link } from 'react-router-dom';
 
-function Post ({author, authorId, text, image, authorImage, modify, id, liked, deletePost}) {
+function Post ({author, authorId, text, image, authorImage, modify, id, liked, deletePost, confirmationMessage}) {
   return (
     <article className='home-page__content__post' >
         <div className='home-page__content__post__top'>
@@ -25,17 +25,16 @@ function Post ({author, authorId, text, image, authorImage, modify, id, liked, d
           </div>
         </div>
         <div className='home-page__content__post__bottom'>
-          <LikeButton
+          <LikeButton 
           id={id}
           authorId={authorId}
           liked={liked}
           />
-          <span className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faMessage} /></span>
           <span id='post-settings' className='home-page__content__post__bottom__icon'><FontAwesomeIcon className='home-page__content__post__bottom__icon__font' icon={faEllipsis} />
           <div id='post-settings__menu' data-set={authorId}>
-            <p onClick={() => modify(id)}>Modifier</p>
+            <Link to={`/newpost?id=${id}`}><p onClick={() => modify(id)}>Modifier</p></Link>
             <p onClick={() => deletePost(id)}>Supprimer</p>
-          </div>
+          </div>  
           </span>
         </div>
     </article>

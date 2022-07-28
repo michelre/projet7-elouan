@@ -76,20 +76,19 @@ export const create = (post) => {
   )
 }
 
-export const modifyPost = (id) => {
+export const modifyPost = (id, post) => {
   const token = localStorage.getItem('token')
+  const formData = new FormData()
+  formData.append('text', post.text)
+  formData.append('image', post.image)
       return fetch (
         `http://localhost:4000/api/post/${id}`, {
         method: 'PUT',
         headers: {
           "Accept": "application/json",
-          "Content-type": "application/json",
           "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          text: document.querySelector('textarea[name="text"]').value,
-          //image: document.querySelector('input[name="image"]').files[0].name,
-        })
+        body: formData
         }
     )
 }
@@ -106,7 +105,7 @@ export const deletePost = (id) => {
     },
     }
   )
-}
+} 
 
 export const like = (id) => {
   const token = localStorage.getItem('token')
@@ -133,5 +132,52 @@ export const logout = () => {
       "Authorization": `Bearer ${token}`,
     },
     }
+  )
+}
+
+export const getUser = (user) => {
+  const token = localStorage.getItem('token')
+  return fetch (
+    `http://localhost:4000/api/auth/${user}`, {
+    method: 'GET',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  }
+  )
+}
+
+export const updateUser = ( user) => {
+  const token = localStorage.getItem('token')
+  const userId = localStorage.getItem('user')
+  const formData = new FormData()
+  formData.append('name', user.name)
+  formData.append('image', user.image)
+  return fetch (
+    `http://localhost:4000/api/auth/${userId}`, {
+    method: 'PUT',
+    headers: {
+      "Accept": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: formData
+    }
+  )
+}
+
+export const deleteUser = () => {
+  const token = localStorage.getItem('token')
+  const user = localStorage.getItem('user')
+  return fetch (
+    `http://localhost:4000/api/auth/${user}`, {
+    method: 'DELETE',
+    headers: {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  }
   )
 }

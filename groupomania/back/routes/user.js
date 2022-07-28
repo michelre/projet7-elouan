@@ -16,7 +16,8 @@ const userCtrl = require('../controllers/user');
 router.post('/signup', password, userCtrl.signup);
 router.post('/login', connectionLimit, userCtrl.login);
 router.post('/logout', auth, userCtrl.logout);
-router.put('/profilePicture', auth, multer, userCtrl.setProfilePicture);
-router.put('/deleteProfilePicture', auth, userCtrl.deleteProfilePicture);
+router.put('/:id', auth, multer, userCtrl.updateUser);
+router.get('/:id', auth, userCtrl.getOne);
+router.delete('/:id', auth, userCtrl.deleteUser);
 
 module.exports = router;

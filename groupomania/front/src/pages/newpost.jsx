@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 import NewPostBlock from "../components/newPostBlock";
 import { create, modifyPost, getOne } from "../api";
-
+import { useNavigate } from 'react-router-dom'
 
 
 function NewPost() {
   const [img, setImg] = useState();
   const [imgForm, setImgForm] = useState();
+  const navigate = useNavigate();
   const onImageChange = (e) => {
     const [file] = e.target.files;
     setImg(URL.createObjectURL(file));
-    setImgForm(file)
+    setImg(file)
   };
 
   const deleteImage = () => {
@@ -24,6 +25,7 @@ function NewPost() {
     getOne(id)
       .then(response => {
         response.json().then(data => {
+          setImgForm(data.post.image);
           document.querySelector('textarea[name="text"]').value = data.post.text;
         });
       })
@@ -35,10 +37,11 @@ function NewPost() {
   const HandleSubmit = (e, post) => {
     e.preventDefault();
     if (id) {
-      modifyPost(id)
+      modifyPost(id, post)
         .then(response => {
           response.json().then(data => {
             console.log(data);
+            navigate('/');
           });
         })
         .catch(error => {
@@ -46,15 +49,15 @@ function NewPost() {
         })
     } else {
       create(post)
-      .then(response => {
-        response.json().then (data => {
-          console.log(data);
-          window.location.href = '/';
+        .then(response => {
+          response.json().then (data => {
+            console.log(data);
+            navigate('/');
+          })
         })
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
 
@@ -64,6 +67,7 @@ function NewPost() {
       onImageChange={onImageChange}
       deleteImage={deleteImage}
       img={img}
+      imgForm={imgForm}
       HandleSubmit={(e, post) => HandleSubmit(e, post)}
       />
     </React.StrictMode>
