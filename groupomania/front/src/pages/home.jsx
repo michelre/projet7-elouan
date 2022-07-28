@@ -25,36 +25,44 @@ function Home() {
     const sortPosts = (sortedType) => {
         setSortedType(sortedType)
         if(sortedType === 'date'){
-            const newPosts = posts.sort((a, b) => a.id - b.id)
-            setPosts([].concat(newPosts))
+          getAll()
+          .then(response => {
+            response.json().then (data => {
+              function compareDate (a, b) {
+                if (a.createdAt < b.createdAt) {
+                  return 1;
+                }
+                if (a.createdAt > b.createdAt) {
+                  return -1;
+                }
+                return 0;
+              }
+              data.sort(compareDate);
+              setPosts(data);
+            });
+          })
         }
 
         if(sortedType === 'popularity'){
           getAll()
           .then(response => {
             response.json().then (data => {
-              for (let i = 0; i < data.length; i++) {
-                if (data[i].liked === null) {
-                  data[i].liked = 0;
-                }
-                
-              }
-              function compare (a, b) {
-                if (a.liked < b.liked) {
+              function compareLikes (a, b) {
+                if (a.likes < b.likes) {
                   return 1;
                 }
-                if (a.liked > b.liked) {
+                if (a.likes > b.likes) {
                   return -1;
                 }
                 return 0;
               }
-              const temp = data.sort(compare)
-              setPosts(temp);
-              /*const newPosts = posts.sort((a, b) => b. - a.likes)
-              setPosts([].concat(newPosts))*/
+              data.sort(compareLikes)
+              setPosts(data);
             });
           })
-            
+          .catch(error => {
+            console.log(error);
+          })
         }
     }
 
